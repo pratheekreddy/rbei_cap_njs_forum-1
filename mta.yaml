@@ -105,7 +105,6 @@ modules:
       disk-quota: 1024M
    requires:
     - name: my-html5-runtime
-    - name: my-xsuaa
     
 
 
@@ -140,11 +139,3 @@ resources:
      service: html5-apps-repo
    type: org.cloudfoundry.managed-service
 
-# --------------------- XSUAA Service ---------------------
- - name: my-xsuaa
-# ------------------------------------------------------------
-   parameters:
-      path: ./xs-security.json
-      service-plan: application
-      service: xsuaa
-   type: org.cloudfoundry.managed-service
