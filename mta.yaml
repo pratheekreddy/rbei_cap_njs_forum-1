@@ -36,7 +36,7 @@ modules:
       properties:
         srv-url: ${default-url}
 
- # --------------------- SERVER MODULE ------------------------
+ # --------------------- NODE MODULE ------------------------
  - name: rbei_njs_forum
  # ------------------------------------------------------------
    type: nodejs
@@ -48,7 +48,7 @@ modules:
     # Resources extracted from CAP configuration
     - name: forum_app-db
    provides:
-    - name: rbei_njs_forum_api      # required by consumers of CAP services (e.g. approuter)
+    - name: rbei_njs_forum_api      # required by consumers of NODE services
       properties:
         url: ${default-url}
 
@@ -116,7 +116,7 @@ resources:
 # ------------------------------------------------------------
    type: com.sap.xs.hdi-container
    parameters:
-     service: hanatrial  # or 'hanatrial' on trial landscapes
+     service: hana  # or 'hanatrial' on trial landscapes
      service-plan: hdi-shared
    properties:
      hdi-service-name: ${service-name}

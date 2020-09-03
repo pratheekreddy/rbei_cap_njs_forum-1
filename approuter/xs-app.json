@@ -3,12 +3,6 @@
     "authenticationMethod": "none",
     "routes": [
         {
-            "source": "/api/(.*)",
-            "target": "$1",
-            "destination": "srv-binding",
-            "authenticationType": "none"
-        },
-        {
             "source": "^(.*)",
             "target": "forumreactapplication/$1",
             "service": "html5-apps-repo-rt"
