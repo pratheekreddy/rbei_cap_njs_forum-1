@@ -16,3 +16,31 @@ entity T_MD_USER {
 		GEN_RBEI_TOKEN			: String(400);
 		GEN_RBEI_TOKEN_TMSTMP	: Timestamp;
 };
+
+entity Sessions {
+	key ID					:	String(150);
+		DATE				:	Date;
+		TITLE				:	String(150);
+		DESC				:	String(500);
+		TOPICS				:   Composition of many Session_Topics on TOPICS.SESSION = $self;
+		S_CREATED_BY		:	String(150);
+		S_CREATED_ON		:	Timestamp;
+		NOTIF_STATUS		:	String(1);
+		FILES				:	Composition of many Session_Files on FILES.SESSION = $self;
+}
+
+entity Session_Topics {
+	key SESSION				:	Association to Sessions;
+	key	SUB_TOPIC_ID		:	String(50);
+		USER_EMAIL			:	String(256);
+		SUB_TOPIC			:	String(100);
+		// FILE_01				:	String(200);
+		// FILE_02				:	String(200);
+		// FILE_03				:	String(200);
+}
+
+entity Session_Files {
+	key SESSION 			:	Association to Sessions;
+	key FILE_NAME			:	String(200);
+		UPLOADED_BY			:	String(100);
+}
