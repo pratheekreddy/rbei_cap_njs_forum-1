@@ -36,6 +36,23 @@ modules:
       properties:
         srv-url: ${default-url}
 
+ # --------------------- SERVER MODULE ------------------------
+ - name: rbei_njs_forum
+ # ------------------------------------------------------------
+   type: nodejs
+   path: rbei_njs_forum
+   parameters:
+      memory: 512M
+      disk-quota: 512M
+   requires:
+    # Resources extracted from CAP configuration
+    - name: forum_app-db
+   provides:
+    - name: rbei_njs_forum_api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        url: ${default-url}
+
+
  # -------------------- SIDECAR MODULE ------------------------
  - name: forum_app-db-deployer
  # ------------------------------------------------------------
@@ -89,6 +106,8 @@ modules:
    requires:
     - name: my-html5-runtime
     - name: my-xsuaa
+    
+
 
 resources:
  # services extracted from CAP configuration
@@ -98,7 +117,7 @@ resources:
 # ------------------------------------------------------------
    type: com.sap.xs.hdi-container
    parameters:
-     service: hana  # or 'hanatrial' on trial landscapes
+     service: hanatrial  # or 'hanatrial' on trial landscapes
      service-plan: hdi-shared
    properties:
      hdi-service-name: ${service-name}

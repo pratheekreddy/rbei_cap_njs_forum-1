@@ -1,0 +1,28 @@
+{
+  "name": "rbei_njs_forum",
+  "version": "1.0.0",
+  "description": "node.js services for forum app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sap/hdbext": "latest",
+    "aws-sdk": "latest",
+    "body-parse": "latest",
+    "@sap/xsenv": "latest",
+    "express": "latest",
+    "nodemailer": "latest",
+    "jsonwebtoken": "latest",
+    "multer": "latest",
+    "@sap/hana-client": "latest",
+    "cors": "latest",
+    "dotenv": "latest"
+  },
+  "engines": {
+    "node": "^10 || ^12"
+  }
+}
