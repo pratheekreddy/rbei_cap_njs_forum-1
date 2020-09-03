@@ -1,0 +1,9 @@
+{	
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "none",
+  "routes":[{
+    "source":"^(.*)",
+    "target":"forumreactapplication/$1",
+    "service":"html5-apps-repo-rt"
+  }]
+}

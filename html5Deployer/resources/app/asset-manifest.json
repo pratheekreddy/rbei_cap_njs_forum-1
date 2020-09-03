@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fba1cb46.chunk.css",
+    "main.js": "/static/js/main.fabf7196.chunk.js",
+    "main.js.map": "/static/js/main.fabf7196.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.92ee656d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.92ee656d.js.map",
+    "static/js/2.c8176346.chunk.js": "/static/js/2.c8176346.chunk.js",
+    "static/js/2.c8176346.chunk.js.map": "/static/js/2.c8176346.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.0037b51be7721efb42778cbfb2cc64b3.js": "/precache-manifest.0037b51be7721efb42778cbfb2cc64b3.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.fba1cb46.chunk.css.map": "/static/css/main.fba1cb46.chunk.css.map",
+    "static/js/2.c8176346.chunk.js.LICENSE.txt": "/static/js/2.c8176346.chunk.js.LICENSE.txt",
+    "static/media/styles.css": "/static/media/Bosch-Icon.f9f9a0b4.woff",
+    "static/media/footer.scss": "/static/media/bosch.5d0cb5cb.jpg",
+    "static/media/bosch_logo.jpg": "/static/media/bosch_logo.12c077f3.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.92ee656d.js",
+    "static/js/2.c8176346.chunk.js",
+    "static/css/main.fba1cb46.chunk.css",
+    "static/js/main.fabf7196.chunk.js"
+  ]
+}

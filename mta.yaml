@@ -1,0 +1,131 @@
+## Generated mta.yaml based on template version 0.3.0
+## appName = forum_app
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: forum_app
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+  deploy_mode: html5-repo
+   
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install --production
+      - npx -p @sap/cds-dk cds build --production
+      - npm --prefix ./app install ./app 
+      - npm run build --prefix ./app
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: forum_app-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: gen/srv
+   parameters:
+      memory: 512M
+      disk-quota: 512M
+   requires:
+    # Resources extracted from CAP configuration
+    - name: forum_app-db
+   provides:
+    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+
+ # -------------------- SIDECAR MODULE ------------------------
+ - name: forum_app-db-deployer
+ # ------------------------------------------------------------
+   type: hdb
+   path: gen/db 
+   parameters:
+     buildpack: nodejs_buildpack
+     memory: 512M
+     disk-quota: 1024M
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: forum_app-db
+
+# --------------------- HTML5DEPLOYER MODULE -----------------
+ - name: my-hmtl5-deployer
+ # ------------------------------------------------------------
+   type: com.sap.html5.application-content
+   path: html5Deployer
+   parameters:
+      memory: 512M
+      disk-quota: 1024M
+   requires:
+    - name: my-html5-host
+   build-parameters:
+    requires:
+      - name: forum_frontend
+        artifacts:
+          - './*'
+        target-path: resources/app
+
+ # --------------------- REACT APP MODULE ---------------------
+ - name: forum_frontend
+ # ------------------------------------------------------------
+   type: html5
+   path: app
+   parameters:
+      memory: 512M
+      disk-quota: 1024M
+   build-parameters:
+      supported-platforms: []
+      build-result: build        # This is the folder containing the build files
+
+ # --------------------- APPROUTER MODULE ---------------------
+ - name: my-approuter
+ # ------------------------------------------------------------
+   type: approuter.nodejs
+   path: approuter
+   parameters:
+      memory: 512M
+      disk-quota: 1024M
+   requires:
+    - name: my-html5-runtime
+    - name: my-xsuaa
+
+resources:
+ # services extracted from CAP configuration
+ # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+# ------------------------------------------------------------
+ - name: forum_app-db
+# ------------------------------------------------------------
+   type: com.sap.xs.hdi-container
+   parameters:
+     service: hana  # or 'hanatrial' on trial landscapes
+     service-plan: hdi-shared
+   properties:
+     hdi-service-name: ${service-name}
+
+ # --------------------- HTML5 Runtime ----------------------
+ - name: my-html5-runtime
+ # ------------------------------------------------------------
+   parameters:
+     service-name: my-html5-runtime
+     service-plan: app-runtime
+     service: html5-apps-repo
+   type: org.cloudfoundry.managed-service
+
+# --------------------- HTML5 Host -------------------------
+ - name: my-html5-host
+# ------------------------------------------------------------
+   parameters:
+     service-name: my-html5-host
+     service-plan: app-host
+     service: html5-apps-repo
+   type: org.cloudfoundry.managed-service
+
+# --------------------- XSUAA Service ---------------------
+ - name: my-xsuaa
+# ------------------------------------------------------------
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
