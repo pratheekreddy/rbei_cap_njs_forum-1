@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
+import dotenv from 'dotenv';
 
 import './login.scss'
 const Login = (props) => {
@@ -12,7 +13,9 @@ const Login = (props) => {
     let getOtp = () => {
         // console.log('getotp')
         email=document.getElementById('email').value
-        const post = axios.get('https://0appkh5ipbo57270um-rbei-njs-forum.cfapps.eu10.hana.ondemand.com/user/auth/otp?user='+email);
+        dotenv.config();
+        const node_srv_api = process.env.CLOUD_NODE_SRV_API;
+        const post = axios.get(node_srv_api + '/user/auth/otp?user='+email);
         post.then((result) => {
             // console.log(result);
             // email = '';

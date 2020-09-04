@@ -105,11 +105,11 @@ modules:
       disk-quota: 1024M
    requires:
     - name: my-html5-runtime
-    - name: srv-api
-      group: destinations
-      properties:
-        name: srv-api
-        url: ~{srv-url}
+    # - name: srv-api
+    #   group: destinations
+    #   properties:
+    #     name: srv-api
+    #     url: ~{srv-url}
     
 resources:
  # services extracted from CAP configuration

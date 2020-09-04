@@ -1,5 +1,6 @@
 import React from "react";
-import axios from 'axios'
+import axios from 'axios';
+import dotenv from 'dotenv';
 
 import './signup.scss'
 
@@ -13,7 +14,9 @@ const signup = (props) => {
         ntid=document.getElementById('ntid').value
         dept=document.getElementById('dept').value
         username=document.getElementById('username').value
-        const post = axios.post('https://0appkh5ipbo57270um-rbei-njs-forum.cfapps.eu10.hana.ondemand.com/user/signup', {
+        dotenv.config()
+        const node_srv_api = process.env.CLOUD_NODE_SRV_API
+        const post = axios.post(node_srv_api + '/user/signup', {
             email, idno,name,ntid,dept,username
         });
         post.then((result) => {

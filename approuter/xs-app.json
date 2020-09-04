@@ -3,18 +3,6 @@
     "authenticationMethod": "none",
     "routes": [
         {
-            "source": "^/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc",
-            "destination": "srv-api",
-            "httpMethods" : "GET",
-            "authenticationType": "none"
-        },
-        {
-            "source": "^/agenda/sessions",
-            "destination": "srv-api",
-            "httpMethods" : "POST",
-            "authenticationType": "none"
-        },
-        {
             "source": "^(.*)",
             "target": "forumreactapplication/$1",
             "service": "html5-apps-repo-rt"
