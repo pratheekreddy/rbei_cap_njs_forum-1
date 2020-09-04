@@ -105,6 +105,13 @@ modules:
       disk-quota: 1024M
    requires:
     - name: my-html5-runtime
+    - name: dest_rbei_cap_njs_forum
+    - name: srv-api
+      group: destinations
+      properties:
+        name: srv-api
+        url: ~{srv-url}
+    
     
 
 
