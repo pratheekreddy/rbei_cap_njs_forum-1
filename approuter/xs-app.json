@@ -4,13 +4,13 @@
     "routes": [
         {
             "source": "^/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc",
-            "destination": "dest_rbei_cap_njs_forum",
+            "destination": "srv-api",
             "httpMethods" : "GET",
             "authenticationType": "none"
         },
         {
             "source": "^/agenda/sessions",
-            "destination": "dest_rbei_cap_njs_forum",
+            "destination": "srv-api",
             "httpMethods" : "POST",
             "authenticationType": "none"
         },
