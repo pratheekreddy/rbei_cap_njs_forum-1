@@ -7,16 +7,17 @@
             "target" : "$1",
             "destination": "odata_api",
             "httpMethods": [
-                "GET"
+                "POST", "GET", "PATCH", "PUT", "DELETE"
             ],
             "authenticationType": "none",
             "csrfProtection" : false
         },
         {
-            "source": "^/user/(.*)$",
+            "source": "^/node/(.*)$",
+            "target" : "$1",
             "destination": "node_api",
             "httpMethods": [
-                "GET"
+                "POST", "GET", "PATCH", "PUT", "DELETE"
             ],
             "authenticationType": "none",
             "csrfProtection" : false

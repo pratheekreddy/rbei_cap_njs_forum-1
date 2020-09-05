@@ -1,7 +1,5 @@
 import React from "react";
 import axios from 'axios';
-import dotenv from 'dotenv';
-
 import './signup.scss'
 
 const signup = (props) => {
@@ -14,9 +12,7 @@ const signup = (props) => {
         ntid=document.getElementById('ntid').value
         dept=document.getElementById('dept').value
         username=document.getElementById('username').value
-        dotenv.config()
-        const node_srv_api = process.env.CLOUD_NODE_SRV_API
-        const post = axios.post(node_srv_api + '/user/signup', {
+        const post = axios.post('/node/user/signup', {
             email, idno,name,ntid,dept,username
         });
         post.then((result) => {

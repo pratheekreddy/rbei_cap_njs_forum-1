@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import ReactTooltip from "react-tooltip";
-import dotenv from 'dotenv';
 
 import "./postcard.scss";
 
-dotenv.config()
-const node_srv_api = process.env.CLOUD_NODE_SRV_API
+
 const PostCard = (props, state) => {
   const [showResources, setShowResources] = useState(false);
   let topics = [];
@@ -41,7 +39,7 @@ const PostCard = (props, state) => {
       {resorc.map((down, i) => {
         
         const tempName = down[0].split('.');
-        return <li key={i}><a target="_blank" rel="noopener noreferrer" href={node_srv_api + "/file/download?filename=" + down[1]}><span>{tempName[1]}</span>{tempName[0]}</a></li>
+        return <li key={i}><a target="_blank" rel="noopener noreferrer" href={"/node/file/download?filename=" + down[1]}><span>{tempName[1]}</span>{tempName[0]}</a></li>
       })}
     </ul>
   )
@@ -56,7 +54,7 @@ const PostCard = (props, state) => {
         'content-type': 'multipart/form-data'
       }
     };
-    axios.post(node_srv_api + "/file/upload", formData, config)
+    axios.post("/node/file/upload", formData, config)
       .then((response) => {
         // console.log(response)
         if(response.status===200){
