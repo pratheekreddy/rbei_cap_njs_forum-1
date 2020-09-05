@@ -3,7 +3,26 @@
     "authenticationMethod": "none",
     "routes": [
         {
-            "source": "^(.*)",
+            "source": "^/api/(.*)$",
+            "target" : "$1",
+            "destination": "odata_api",
+            "httpMethods": [
+                "GET"
+            ],
+            "authenticationType": "none",
+            "csrfProtection" : false
+        },
+        {
+            "source": "^/user/(.*)$",
+            "destination": "node_api",
+            "httpMethods": [
+                "GET"
+            ],
+            "authenticationType": "none",
+            "csrfProtection" : false
+        },
+        {
+            "source": "^(.*)$",
             "target": "forumreactapplication/$1",
             "service": "html5-apps-repo-rt"
         }

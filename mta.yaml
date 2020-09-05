@@ -94,6 +94,7 @@ modules:
    build-parameters:
       supported-platforms: []
       build-result: build        # This is the folder containing the build files
+   
 
  # --------------------- APPROUTER MODULE ---------------------
  - name: my-approuter
@@ -105,11 +106,18 @@ modules:
       disk-quota: 1024M
    requires:
     - name: my-html5-runtime
-    # - name: srv-api
-    #   group: destinations
-    #   properties:
-    #     name: srv-api
-    #     url: ~{srv-url}
+    - name: srv-api
+      group: destinations
+      properties:
+        name: odata_api
+        url: ~{srv-url}
+    - name: rbei_njs_forum_api
+      group: destinations
+      properties:
+        name: node_api
+        url: ~{url}
+
+
     
 resources:
  # services extracted from CAP configuration
@@ -141,4 +149,3 @@ resources:
      service-plan: app-host
      service: html5-apps-repo
    type: org.cloudfoundry.managed-service
-
