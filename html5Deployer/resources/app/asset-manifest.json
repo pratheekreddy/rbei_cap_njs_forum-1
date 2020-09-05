@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.5e2f06bb.chunk.css",
-    "main.js": "/static/js/main.c6b3600a.chunk.js",
-    "main.js.map": "/static/js/main.c6b3600a.chunk.js.map",
+    "main.css": "/static/css/main.a04320ae.chunk.css",
+    "main.js": "/static/js/main.3511dee4.chunk.js",
+    "main.js.map": "/static/js/main.3511dee4.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.92ee656d.js",
     "runtime-main.js.map": "/static/js/runtime-main.92ee656d.js.map",
     "static/js/2.c8176346.chunk.js": "/static/js/2.c8176346.chunk.js",
     "static/js/2.c8176346.chunk.js.map": "/static/js/2.c8176346.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.51a00b4d7462f44566697263342046fe.js": "/precache-manifest.51a00b4d7462f44566697263342046fe.js",
+    "precache-manifest.1037f00630dfd8e14fb9522ca192e61f.js": "/precache-manifest.1037f00630dfd8e14fb9522ca192e61f.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.5e2f06bb.chunk.css.map": "/static/css/main.5e2f06bb.chunk.css.map",
+    "static/css/main.a04320ae.chunk.css.map": "/static/css/main.a04320ae.chunk.css.map",
     "static/js/2.c8176346.chunk.js.LICENSE.txt": "/static/js/2.c8176346.chunk.js.LICENSE.txt",
     "static/media/styles.css": "/static/media/Bosch-Icon.f9f9a0b4.woff",
     "static/media/header.scss": "/static/media/bosch.5d0cb5cb.jpg",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.92ee656d.js",
     "static/js/2.c8176346.chunk.js",
-    "static/css/main.5e2f06bb.chunk.css",
-    "static/js/main.c6b3600a.chunk.js"
+    "static/css/main.a04320ae.chunk.css",
+    "static/js/main.3511dee4.chunk.js"
   ]
 }

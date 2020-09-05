@@ -14,7 +14,8 @@ router.post('/login', async(req, res) => {
 	//query to check if OTP is valid.
 	let query =
 		`SELECT
-			EMAIL_ID,
+            EMAIL_ID,
+            NAME,
 			CASE
 				WHEN GEN_OTP = ? THEN
 					CASE 
@@ -47,7 +48,8 @@ router.post('/login', async(req, res) => {
 		}
 		const {
 			EMAIL_ID,
-			TYPE
+            TYPE,
+            NAME
 		} = result[0];
 
 		//converting token generated timestamp to appropriate UTC timestamp format, to store in the database.
@@ -71,7 +73,8 @@ router.post('/login', async(req, res) => {
 		res.send({
 			token,
 			type: TYPE,
-			email: EMAIL_ID
+            email: EMAIL_ID,
+            name:NAME
 		});
 	} catch (error) {
 		console.log(error);
