@@ -11,7 +11,7 @@ const header=(props)=> {
       }else{signup=false}
 
       let welcome=(
-        <h3>Welcome {props.user}</h3>
+        <h3>Welcome {localStorage.getItem('name')}</h3>
       )
       let nav=(
           <div className="signup">
@@ -25,7 +25,7 @@ const header=(props)=> {
 
             <h1>Forum Feed</h1>
 
-            {signup? nav:welcome }
+            {signup? nav : welcome }
         </header>
     )
    

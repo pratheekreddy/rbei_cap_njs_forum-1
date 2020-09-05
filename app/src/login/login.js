@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import './login.scss'
 const Login = (props) => {
+    let token = localStorage.getItem('token')
+    axios.defaults.headers.common['Authorization'] = token;
     // console.log(props)
     const [showOTP, setshowOTP] = useState(false);
     let email = ''
@@ -14,9 +16,6 @@ const Login = (props) => {
         email=document.getElementById('email').value
         const post = axios.get('/node/user/auth/otp?user=' + email);
         post.then((result) => {
-            // console.log(result);
-            // email = '';
-            // otp = '';
             setshowOTP(true);
             alert(result.data.msg)
         }).catch((e) => {
@@ -38,6 +37,8 @@ const Login = (props) => {
                 header = result.data.token
                 props.history.push({pathname:'/landing'})
                 localStorage.setItem('token',header)
+                localStorage.setItem('type',result.data.type)
+                localStorage.setItem('name',result.data.name)
             }
             else{
                 alert(result.data.msg)
