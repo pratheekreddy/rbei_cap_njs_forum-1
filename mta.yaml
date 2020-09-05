@@ -43,7 +43,7 @@ modules:
    path: rbei_njs_forum
    parameters:
       memory: 512M
-      disk-quota: 512M
+      disk-quota: 1024M
    requires:
     # Resources extracted from CAP configuration
     - name: forum_app-db

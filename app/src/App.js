@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";//, Link 
 
 import "./postcard/styles.css";
-import Headers from "./header";
+import Headers from "./header/header";
 import Footers from "./footer/footer";
 import Login from "./login/login";
 import Signup from "./login/signup"
@@ -11,7 +11,7 @@ class App extends Component {
 
 
   render() {
-       console.log(Object.keys(process.env))
+    //    console.log(Object.keys(process.env))
     // console.log(props)
     return (
       <Router>

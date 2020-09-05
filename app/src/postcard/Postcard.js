@@ -115,7 +115,7 @@ const PostCard = (props, state) => {
       <div >{showResources ? download : null}</div>
 
 
-      <div>{(new Date(props.date) > new Date() ) ? emailicon: null}</div>
+      <div>{(new Date(props.date) > new Date() ) &&localStorage.getItem('type')==='A' ? emailicon: null}</div>
       <div className="clear"></div>
     </div>
   );

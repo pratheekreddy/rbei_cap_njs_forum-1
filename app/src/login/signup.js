@@ -29,17 +29,17 @@ const signup = (props) => {
     return(
         <div>
         <div className='login'>
-            <label>E-mail :</label>
+            <label>E-mail* </label>
             <input type='text' placeholder="Enter your Email" id="email"></input>
-            <label>Id number :</label>
+            <label>Id number* </label>
             <input type='text' placeholder="Enter your Employee Id" id="idno"></input>
-            <label>Full Name :</label>
+            <label>Full Name* </label>
             <input type='text' placeholder="Enter your Full Name" id="name"></input>
-            <label>NT-ID :</label>
+            <label>NT-ID* </label>
             <input type='text' placeholder="Enter your NT ID" id="ntid"></input>
-            <label>Department :</label>
+            <label>Department* </label>
             <input type='text' placeholder="Enter your Department" id="dept"></input>
-            <label>Username :</label>
+            <label>Username </label>
             <input type='text' placeholder="Enter your Username" id="username"></input>
             <button className="rb-button rb-button--primary" onClick={register}>Signup</button>
         </div>

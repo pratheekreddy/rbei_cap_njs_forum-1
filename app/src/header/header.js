@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter,Link} from 'react-router-dom'
-import logo from './postcard/bosch_logo.jpg'
-import './postcard/header.scss'
+import logo from './bosch_logo.jpg'
+import './header.scss'
 
 const header=(props)=> {
     let signup=false
@@ -11,7 +11,7 @@ const header=(props)=> {
       }else{signup=false}
 
       let welcome=(
-        <h3>Welcome {props.user}</h3>
+        <h3>Welcome {localStorage.getItem('name')}</h3>
       )
       let nav=(
           <div className="signup">
@@ -25,7 +25,7 @@ const header=(props)=> {
 
             <h1>Forum Feed</h1>
 
-            {signup? nav:welcome }
+            {signup? nav : welcome }
         </header>
     )
    

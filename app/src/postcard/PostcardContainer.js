@@ -9,7 +9,6 @@ class PostcardContainer extends Component {
             session: []
         };
     }
-    user = 'chathia chandran'
     reset = () => {
         let token = localStorage.getItem('token')
         axios.defaults.headers.common['Authorization'] = token;
@@ -30,7 +29,7 @@ class PostcardContainer extends Component {
         this.reset();
     }
     render() {
-        console.log(Object.keys(process.env))
+        // console.log(Object.keys(process.env))
         // console.log(props)
         return (
             <Postcards session={this.state.session} />
