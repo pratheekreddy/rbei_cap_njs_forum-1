@@ -27,11 +27,8 @@ var hanaOptions = xsenv.getServices({
 });
 console.log(hanaOptions)
 
-// console.log(JSON.parse(process.env.VCAP_SERVICES));
-
-// console.log(JSON.parse(process.env.VCAP_SERVICES).objectstore[0].credentials);
 module.exports=hanaOptions;
-// console.log(exports)
+
 
 app.use(
 	HDBConn.middleware(hanaOptions.hana)

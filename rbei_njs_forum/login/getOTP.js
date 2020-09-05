@@ -4,6 +4,7 @@ var router = express.Router();
 const triggerEmail=require('../email/email.js')
 
 router.get('/otp',async(req,res)=>{
+    console.log('Inside get otp route')
 	try{
 	let userid=req.query.user
 	if(userid===undefined){
