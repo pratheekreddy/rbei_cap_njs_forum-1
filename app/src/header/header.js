@@ -1,7 +1,7 @@
 import React from 'react'
 import {withRouter,Link} from 'react-router-dom'
-import logo from './postcard/bosch_logo.jpg'
-import './postcard/header.scss'
+import logo from './bosch_logo.jpg'
+import './header.scss'
 
 const header=(props)=> {
     let signup=false
