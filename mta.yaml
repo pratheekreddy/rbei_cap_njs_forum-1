@@ -26,7 +26,7 @@ modules:
    type: nodejs
    path: gen/srv
    parameters:
-      memory: 512M
+      memory: 256M
       disk-quota: 512M
    requires:
     # Resources extracted from CAP configuration
@@ -42,7 +42,7 @@ modules:
    type: nodejs
    path: rbei_njs_forum
    parameters:
-      memory: 512M
+      memory: 256M
       disk-quota: 1024M
    requires:
     # Resources extracted from CAP configuration
@@ -60,8 +60,8 @@ modules:
    path: gen/db 
    parameters:
      buildpack: nodejs_buildpack
-     memory: 512M
-     disk-quota: 1024M
+     memory: 256M
+     disk-quota: 512M
    requires:
     # 'hana' and 'xsuaa' resources extracted from CAP configuration
     - name: forum_app-db
@@ -72,8 +72,8 @@ modules:
    type: com.sap.html5.application-content
    path: html5Deployer
    parameters:
-      memory: 512M
-      disk-quota: 1024M
+      memory: 256M
+      disk-quota: 512M
    requires:
     - name: my-html5-host
    build-parameters:
@@ -89,8 +89,8 @@ modules:
    type: html5
    path: app
    parameters:
-      memory: 512M
-      disk-quota: 1024M
+      memory: 256M
+      disk-quota: 512M
    build-parameters:
       supported-platforms: []
       build-result: build        # This is the folder containing the build files
@@ -102,8 +102,8 @@ modules:
    type: approuter.nodejs
    path: approuter
    parameters:
-      memory: 512M
-      disk-quota: 1024M
+      memory: 256M
+      disk-quota: 512M
    requires:
     - name: my-html5-runtime
     - name: srv-api
