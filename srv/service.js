@@ -34,7 +34,7 @@ module.exports = cds.service.impl(srv => {
 
             //will return only one record as email_id is the key
             let participants=srv.entities.participants
-            const result = await cds.run(SELECT.from(participants).where('EMAIL_ID=', requester))
+            const result = await cds.run(SELECT.from(participants).columns(['EMAIL_ID', 'STATUS', 'TYPE']).where('EMAIL_ID=', requester))
             console.log(result)
             if (result.length === 0)  req.reject(
                 401,
