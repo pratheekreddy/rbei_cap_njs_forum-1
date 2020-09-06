@@ -29,15 +29,17 @@ const upload=multer({
 });
 
 
-router.post('/upload',  upload.single('files'), (req, res) => {
+router.post('/upload', authentication, upload.single('files'), (req, res) => {
 		let session_id=req.body.session_id;
-		let subtopic_id=req.body.subtopic_id;
+        let uploaded_by = req.body.uploaded_by;
+        uploaded_by = !uploaded_by ? "" : uploaded_by;
+        let uploaded
 		// console.log(req.file);
 			let name;
 			let keys=[];
 
 			name=Date.now()+'-'+req.file.originalname;
-			keys.push([session_id,name]);
+			keys.push([session_id, name, uploaded_by]);
 			
 			
 			const params = {
@@ -56,7 +58,7 @@ router.post('/upload',  upload.single('files'), (req, res) => {
 				// console.log(keys)
 				console.log(keys);
 				let client=req.db;
-				let query="insert into RBEI_NODE_FORUM_SESSION_FILES (SESSION_ID,FILE_NAME) VALUES (?,?)";
+				let query="insert into RBEI_NODE_FORUM_SESSION_FILES (SESSION_ID, FILE_NAME, UPLOADED_BY) VALUES (?,?,?)";
 				console.log(query);
 				client.prepare(query,(err,statement)=>{
 					statement.exec(keys,(error,result)=>{
@@ -83,7 +85,7 @@ router.post('/upload',  upload.single('files'), (req, res) => {
 			
 });
 
-router.get('/download', (req, res) => {
+router.get('/download', authentication, (req, res) => {
 	let filename=req.query.filename;
 		const params = {
 			Bucket: cred.credentials.bucket,
@@ -109,7 +111,7 @@ router.get('/download', (req, res) => {
 		
 })
 
-router.get('/list', (req, res) => {
+router.get('/list', authentication, (req, res) => {
 
 		const params = {
 			Bucket: cred.credentials.bucket
@@ -127,7 +129,7 @@ router.get('/list', (req, res) => {
 		 });
 });
 
-router.post('/delete', (req, res) => {
+router.post('/delete', authentication, (req, res) => {
 	console.log('delete route');
 		let filename=req.body.filename;
 		const params = {
