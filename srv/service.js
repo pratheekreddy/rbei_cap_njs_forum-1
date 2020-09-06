@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports = cds.service.impl(srv => {
     console.log(srv.entities)
-    srv.before('*', (req) => {
+    srv.before('*', async (req) => {
         try {
             let authorization = req._.req.headers.authorization;
             if (!authorization) {
