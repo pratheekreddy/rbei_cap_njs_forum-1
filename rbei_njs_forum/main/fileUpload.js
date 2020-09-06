@@ -85,7 +85,7 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
 			
 });
 
-router.get('/download', authentication, (req, res) => {
+router.get('/download', (req, res) => {
 	let filename=req.query.filename;
 		const params = {
 			Bucket: cred.credentials.bucket,
