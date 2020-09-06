@@ -7,14 +7,14 @@ module.exports = cds.service.impl(srv => {
         try {
             let authorization = req._.req.headers.authorization;
             if (!authorization) {
-                 req.reject(
+                req.reject(
                     401,
                     'unauthorized'
                 );
             }
             let headers = authorization.split(';');
             console.log(headers);
-            if (headers.length != 2 || !headers[0].startsWith('requester=') || !headers[1].startsWith('rbei_access_token='))  req.reject(
+            if (headers.length != 2 || !headers[0].startsWith('requester=') || !headers[1].startsWith('rbei_access_token=')) req.reject(
                 401,
                 'unauthorized'
             );
@@ -27,36 +27,39 @@ module.exports = cds.service.impl(srv => {
             const {
                 EMAIL_ID
             } = decoded;
-            if (!(requester === EMAIL_ID))  req.reject(
+            if (!(requester === EMAIL_ID)) req.reject(
                 401,
                 'unauthorized'
             );
 
             //will return only one record as email_id is the key
-            let participants=srv.entities.participants
+            let participants = srv.entities.participants
             const result = await cds.run(SELECT.from(participants).columns(['EMAIL_ID', 'STATUS', 'TYPE']).where('EMAIL_ID=', requester))
             console.log(result)
-            if (result.length === 0)  req.reject(
+            if (result.length === 0) req.reject(
                 401,
                 'unauthorized'
             );
 
-            if (result[0].STATUS != 'A')  req.reject(
-                 401,
-                 'unauthorized'
-            );
-        } catch (error) {
-             req.reject(
+            if (result[0].STATUS != 'A') req.reject(
                 401,
-             error
+                'unauthorized'
+            );
+            req.data.rbei_access_role = result[0].TYPE;
+            req.data.user = EMAIL_ID;
+        } catch (error) {
+            req.reject(
+                401,
+                error
             );
         }
     })
 
     srv.before('CREATE', 'sessions', (req) => {
+        if (req.data.rbei_access_role != 'A') return req.reject(401, 'unauthorized');
         const session_id = 'S_' + Date.now();
         req.data.ID = session_id;
-        req.data.S_CREATED_BY = 'pratheekreddy.katta@in.bosch.com';
+        req.data.S_CREATED_BY = req.data.user;
         req.data.S_CREATED_ON = new Date().toISOString();
         let counter = 00;
         req.data.TOPICS.forEach(topic => {
