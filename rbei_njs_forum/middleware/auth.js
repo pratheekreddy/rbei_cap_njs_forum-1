@@ -31,7 +31,7 @@ const auth = async (req, res, next) => {
 
 
         //will return only one record as email_id is the key
-        const query = 'SELECT EMAIL_ID, STATUS, TYPE FROM RBEI_CUSTOM_AUTH_T_MD_USER WHERE EMAIL_ID = ?';
+        const query = 'SELECT EMAIL_ID, STATUS, TYPE FROM RBEI_NODE_FORUM_T_MD_USER WHERE EMAIL_ID = ?';
         const client = req.db;
         const result = await client.exec(query, [requester]);
         if (result.length === 0) return res.status(401).send({

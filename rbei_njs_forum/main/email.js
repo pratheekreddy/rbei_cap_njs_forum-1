@@ -5,7 +5,7 @@ const client = require("@sap/hana-client");
 const hanaOptions=require('../server.js');
 const authentication = require('../middleware/auth') 
 // console.log(hanaOptions);
-router.get('/', async(req, res) => {
+router.get('/', authentication ,async(req, res) => {
 	try {
 		// const {
 		// 	title,
@@ -58,7 +58,8 @@ const sendAgendaEmail = async(emailContent) => {
 		topics,
 		mailSubscribers
 	} = emailContent
-	let to = mailSubscribers.map(subscriber => subscriber.EMAIL)
+    let to = mailSubscribers.map(subscriber => subscriber.EMAIL_ID)
+    console.log(to)
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
