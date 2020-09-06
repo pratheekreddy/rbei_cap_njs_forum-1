@@ -10,7 +10,9 @@ class PostcardContainer extends Component {
         };
     }
     reset = () => {
-        let token = localStorage.getItem('token')
+        let t = localStorage.getItem('token')
+        let email_local = localStorage.getItem('email')
+        let token='requester='+email_local+';rbei_access_token='+t
         axios.defaults.headers.common['Authorization'] = token;
         const post = axios.get(
             "/api/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc"

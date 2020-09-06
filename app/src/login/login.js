@@ -39,6 +39,7 @@ const Login = (props) => {
                 localStorage.setItem('token',header)
                 localStorage.setItem('type',result.data.type)
                 localStorage.setItem('name',result.data.name)
+                localStorage.setItem('email',result.data.email)
             }
             else{
                 alert(result.data.msg)

@@ -6,6 +6,10 @@ import "./postcard.scss";
 
 
 const PostCard = (props, state) => {
+    let t = localStorage.getItem('token')
+    let email_local = localStorage.getItem('email')
+    let token='requester='+email_local+';rbei_access_token='+t
+    axios.defaults.headers.common['Authorization'] = token;  
   const [showResources, setShowResources] = useState(false);
   let topics = [];
   let presento = [];
