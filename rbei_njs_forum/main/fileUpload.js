@@ -15,11 +15,11 @@ let objectstoreOptions = xsenv.getServices({
 let cred = objectstoreOptions.cred
 console.log(cred)
 const credentials = new AWS.Credentials(
-    cred.credentials.access_key_id,
-    cred.credentials.secret_access_key);
+    cred.access_key_id,
+    cred.secret_access_key);
 
 AWS.config.update({
-    region: cred.credentials.region
+    region: cred.region
 });
 
 const s3 = new AWS.S3({
@@ -48,7 +48,7 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
 
 
     const params = {
-        Bucket: cred.credentials.bucket, // pass your bucket name
+        Bucket: cred.bucket, // pass your bucket name
         Key: name, // file will be saved	
         Body: req.file.buffer
     };
@@ -93,7 +93,7 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
 router.get('/download', (req, res) => {
     let filename = req.query.filename;
     const params = {
-        Bucket: cred.credentials.bucket,
+        Bucket: cred.bucket,
         Key: filename
     };
     // res.set('Content-Type', 'application/pdf')
@@ -119,7 +119,7 @@ router.get('/download', (req, res) => {
 router.get('/list', authentication, (req, res) => {
 
     const params = {
-        Bucket: cred.credentials.bucket
+        Bucket: cred.bucket
     };
     s3.listObjects(params, function (err, data) {
         if (err) {
@@ -138,7 +138,7 @@ router.post('/delete', authentication, (req, res) => {
     console.log('delete route');
     let filename = req.body.filename;
     const params = {
-        Bucket: cred.credentials.bucket,
+        Bucket: cred.bucket,
         Key: filename
     };
     s3.deleteObject(params, function (err, data) {
