@@ -54,15 +54,15 @@ module.exports = cds.service.impl(srv => {
     })
 
     srv.before('CREATE', 'sessions', (req) => {
-        const session_id = 'S_' + Date.now()
-        req.data.ID = session_id
-        req.data.S_CREATED_BY = 'pratheekreddy.katta@in.bosch.com'
-        req.data.S_CREATED_ON = new Date().toISOString().replace('Z', '').replace('T', '')
-        let counter = 00
+        const session_id = 'S_' + Date.now();
+        req.data.ID = session_id;
+        req.data.S_CREATED_BY = 'pratheekreddy.katta@in.bosch.com';
+        req.data.S_CREATED_ON = new Date().toISOString();
+        let counter = 00;
         req.data.TOPICS.forEach(topic => {
-            topic.SUB_TOPIC_ID = 'ST_' + counter
-            topic.SESSION_ID = session_id
-            counter++
+            topic.SUB_TOPIC_ID = 'ST_' + counter;
+            topic.SESSION_ID = session_id;
+            counter++;
         })
     })
 })
