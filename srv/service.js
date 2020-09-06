@@ -33,7 +33,7 @@ module.exports = cds.service.impl(srv => {
             });
 
             //will return only one record as email_id is the key
-            const result = await cds.run(SELECT.from(participants, [EMAIL_ID, STATUS, TYPE]).where('EMAIL_ID=', requester))
+            const result = await cds.run(SELECT.from(participants).columns(['EMAIL_ID', 'STATUS', 'TYPE']).where('EMAIL_ID=', requester))
             if (result.length === 0) return req.reject({
                 code: 401,
                 message: 'unauthorized'
