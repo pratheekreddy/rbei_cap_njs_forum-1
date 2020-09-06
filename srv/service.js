@@ -2,22 +2,22 @@ const cds = require('@sap/cds')
 const jwt = require('jsonwebtoken')
 
 module.exports = cds.service.impl(srv => {
-    console.log(srv.entities)
+    // console.log(srv.entities)
     srv.before('*', async (req) => {
         try {
             let authorization = req._.req.headers.authorization;
             if (!authorization) {
-                return req.reject({
-                    code: 401,
-                    message: 'unauthorized'
-                });
+                 req.error(
+                    401,
+                    'unauthorized'
+                );
             }
             let headers = authorization.split(';');
             console.log(headers);
-            if (headers.length != 2 || !headers[0].startsWith('requester=') || !headers[1].startsWith('rbei_access_token=')) return req.error({
-                code: 401,
-                message: 'unauthorized'
-            });
+            if (headers.length != 2 || !headers[0].startsWith('requester=') || !headers[1].startsWith('rbei_access_token='))  req.error(
+                401,
+                'unauthorized'
+            );
             let requester = headers[0].replace('requester=', '');
             let rbei_access_token = headers[1].replace('rbei_access_token=', '');
 
@@ -27,27 +27,29 @@ module.exports = cds.service.impl(srv => {
             const {
                 EMAIL_ID
             } = decoded;
-            if (!(requester === EMAIL_ID)) return req.reject({
-                code: 401,
-                message: 'unauthorized'
-            });
+            if (!(requester === EMAIL_ID))  req.error(
+                401,
+                'unauthorized'
+            );
 
             //will return only one record as email_id is the key
-            const result = await cds.run(SELECT.from(participants, [EMAIL_ID, STATUS, TYPE]).where('EMAIL_ID=', requester))
-            if (result.length === 0) return req.reject({
-                code: 401,
-                message: 'unauthorized'
-            });
+            let participants=srv.entities.participants
+            const result = await cds.run(SELECT.from(participants).where('EMAIL_ID=', requester))
+            console.log(result)
+            if (result.length === 0)  req.error(
+                401,
+                'unauthorized'
+            );
 
-            if (result[0].STATUS != 'A') return req.reject({
-                code: 401,
-                message: 'unauthorized'
-            });
+            if (result[0].STATUS != 'A')  req.error(
+                 401,
+                 'unauthorized'
+            );
         } catch (error) {
-            return req.reject({
-                code: 401,
-                message: error
-            });
+             req.error(
+                401,
+             error
+            );
         }
     })
 
@@ -62,11 +64,5 @@ module.exports = cds.service.impl(srv => {
             topic.SESSION_ID = session_id
             counter++
         })
-    })
-    srv.on('READ', 'search', (req, next) => {
-        // console.log(process.env.VCAP_SERVICES.objectstore[0])
-        // let {search}=srv.entities
-        // console.log(req.params)
-        // return srv.run( SELECT.from(search))
     })
 })
