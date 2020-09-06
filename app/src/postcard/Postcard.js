@@ -68,9 +68,13 @@ const PostCard = (props, state) => {
     formSubmit(e)
   }
 
+  let sendEmail=()=>{
+      axios.get('/node/publishagenda?session_id='+props.session_id)
+  }
+
   let emailicon=(
     <div className="admin-notify">
-        <i data-tip data-for="emailTip" className="boschicon-bosch-ic-mail"></i>
+        <i data-tip data-for="emailTip" className="boschicon-bosch-ic-mail" onClick={sendEmail}></i>
           <ReactTooltip id="emailTip" place="top" effect="solid">
                 Email Subscribers
           </ReactTooltip>
