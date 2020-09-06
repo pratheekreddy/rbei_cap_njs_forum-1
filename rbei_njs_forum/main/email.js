@@ -17,10 +17,12 @@ router.get('/', async(req, res) => {
 		let agendaq="select * from RBEI_NODE_FORUM_SESSION_TOPICS a inner join RBEI_NODE_FORUM_SESSIONS b on a.session_id=b.id where a.session_id='"+session_id+"'"
 		let client = req.db
 		let agendaResults=await client.exec(agendaq)
-		// console.log(agendaResults)
+		console.log(agendaResults)
 		// insertAgenda(req.body)
 		let query = `SELECT EMAIL_ID FROM RBEI_NODE_FORUM_T_MD_USER`;
+        console.log('query ', query )
 		let mailSubscribers = await client.exec(query)
+        console.log('mailSubscribers ', mailSubscribers )
 		let topics=[]
 		for(let i=0;i<agendaResults.length;i++){
 			topics.push({
@@ -36,7 +38,9 @@ router.get('/', async(req, res) => {
 			topics,
 			mailSubscribers
 		}
+        console.log('email information ', emailInformation)
 		let info = await sendAgendaEmail(emailInformation)
+        console.log('info ', info)
 		return res.send(info)
 	} catch (error) {
 		console.log(error)

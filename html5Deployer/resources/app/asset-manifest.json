@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.a04320ae.chunk.css",
-    "main.js": "/static/js/main.3511dee4.chunk.js",
-    "main.js.map": "/static/js/main.3511dee4.chunk.js.map",
+    "main.css": "/static/css/main.6942912b.chunk.css",
+    "main.js": "/static/js/main.b3e0344b.chunk.js",
+    "main.js.map": "/static/js/main.b3e0344b.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.92ee656d.js",
     "runtime-main.js.map": "/static/js/runtime-main.92ee656d.js.map",
-    "static/js/2.c8176346.chunk.js": "/static/js/2.c8176346.chunk.js",
-    "static/js/2.c8176346.chunk.js.map": "/static/js/2.c8176346.chunk.js.map",
+    "static/js/2.3a83feb9.chunk.js": "/static/js/2.3a83feb9.chunk.js",
+    "static/js/2.3a83feb9.chunk.js.map": "/static/js/2.3a83feb9.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.1037f00630dfd8e14fb9522ca192e61f.js": "/precache-manifest.1037f00630dfd8e14fb9522ca192e61f.js",
+    "precache-manifest.c1b0c488f49386c01e98e7e6a39ffa3e.js": "/precache-manifest.c1b0c488f49386c01e98e7e6a39ffa3e.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.a04320ae.chunk.css.map": "/static/css/main.a04320ae.chunk.css.map",
-    "static/js/2.c8176346.chunk.js.LICENSE.txt": "/static/js/2.c8176346.chunk.js.LICENSE.txt",
+    "static/css/main.6942912b.chunk.css.map": "/static/css/main.6942912b.chunk.css.map",
+    "static/js/2.3a83feb9.chunk.js.LICENSE.txt": "/static/js/2.3a83feb9.chunk.js.LICENSE.txt",
     "static/media/styles.css": "/static/media/Bosch-Icon.f9f9a0b4.woff",
     "static/media/header.scss": "/static/media/bosch.5d0cb5cb.jpg",
     "static/media/bosch_logo.jpg": "/static/media/bosch_logo.12c077f3.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.92ee656d.js",
-    "static/js/2.c8176346.chunk.js",
-    "static/css/main.a04320ae.chunk.css",
-    "static/js/main.3511dee4.chunk.js"
+    "static/js/2.3a83feb9.chunk.js",
+    "static/css/main.6942912b.chunk.css",
+    "static/js/main.b3e0344b.chunk.js"
   ]
 }
