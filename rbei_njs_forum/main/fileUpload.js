@@ -3,10 +3,15 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const AWS = require('aws-sdk');
+const xsenv = require("@sap/xsenv");
 const authentication = require('../middleware/auth')
 try{
-let cred=JSON.parse(process.env.VCAP_SERVICES).objectstore[0];
-
+let cred= xsenv.getServices({
+	hana: {
+		tag: "objectStore"
+	}
+});
+console.log(cred)
 const credentials = new AWS.Credentials(
 		cred.credentials.access_key_id,
 		cred.credentials.secret_access_key);
