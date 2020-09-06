@@ -7,14 +7,14 @@ module.exports = cds.service.impl(srv => {
         try {
             let authorization = req._.req.headers.authorization;
             if (!authorization) {
-                 req.error(
+                 req.reject(
                     401,
                     'unauthorized'
                 );
             }
             let headers = authorization.split(';');
             console.log(headers);
-            if (headers.length != 2 || !headers[0].startsWith('requester=') || !headers[1].startsWith('rbei_access_token='))  req.error(
+            if (headers.length != 2 || !headers[0].startsWith('requester=') || !headers[1].startsWith('rbei_access_token='))  req.reject(
                 401,
                 'unauthorized'
             );
@@ -27,7 +27,7 @@ module.exports = cds.service.impl(srv => {
             const {
                 EMAIL_ID
             } = decoded;
-            if (!(requester === EMAIL_ID))  req.error(
+            if (!(requester === EMAIL_ID))  req.reject(
                 401,
                 'unauthorized'
             );
@@ -36,17 +36,17 @@ module.exports = cds.service.impl(srv => {
             let participants=srv.entities.participants
             const result = await cds.run(SELECT.from(participants).where('EMAIL_ID=', requester))
             console.log(result)
-            if (result.length === 0)  req.error(
+            if (result.length === 0)  req.reject(
                 401,
                 'unauthorized'
             );
 
-            if (result[0].STATUS != 'A')  req.error(
+            if (result[0].STATUS != 'A')  req.reject(
                  401,
                  'unauthorized'
             );
         } catch (error) {
-             req.error(
+             req.reject(
                 401,
              error
             );
