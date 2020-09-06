@@ -47,6 +47,7 @@ modules:
    requires:
     # Resources extracted from CAP configuration
     - name: forum_app-db
+    - name: rbei_s3store_njs_forum
    provides:
     - name: rbei_njs_forum_api      # required by consumers of NODE services
       properties:
@@ -149,3 +150,12 @@ resources:
      service-plan: app-host
      service: html5-apps-repo
    type: org.cloudfoundry.managed-service
+
+# --------------------- AWS ObjectStore -------------------------
+ - name: rbei_s3store_njs_forum
+# ------------------------------------------------------------
+   parameters:
+     service-name: rbei_s3store_njs_forum
+     service-plan: s3-standard
+     service: objectstore
+   type: org.cloudfoundry.managed-service   

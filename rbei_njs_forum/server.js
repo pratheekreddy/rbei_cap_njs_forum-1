@@ -43,7 +43,6 @@ app.use('/user',require('./login/signup'));
 app.use('/user/auth',require("./login/getOTP"));
 app.use('/user/auth',require("./login/login"));
 app.use('/publishagenda', require('./main/email.js'));
-app.use('/search',require('./main/search.js'));
 app.use('/file',require('./main/fileUpload.js'));
 	
 app.listen(port, () => {
