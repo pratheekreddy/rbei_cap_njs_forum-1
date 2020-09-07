@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios'
 import ReactTooltip from "react-tooltip";
-import fileDownload from 'js-file-download';
+// import fileDownload from 'js-file-download';
 
 import DownloadFile from './downloadFile';
 import "./postcard.scss";
@@ -37,15 +37,6 @@ const PostCard = (props, state) => {
     </div>
   )
 
-  let filedown=(e)=>{
-      console.log(e)
-    // axios.get('node/file/download?filename='+fileNam)
-    // .then((result)=>{
-    //   console.log(result)
-    //   fileDownload(result.data, 'FOTA.docx');
-    // })
-  }
-
   let download = (
     <ul className="downloads">
     {/*TODO: add heading*/}
@@ -53,8 +44,7 @@ const PostCard = (props, state) => {
       
       {resorc.map((down, i) => {
         
-        const tempName = down[0].split('.');
-        return <li key={i}><p target="_blank" rel="noopener noreferrer" onClick={filedown}><span>{tempName[1]}</span>{tempName[0]}</p></li>
+        return <DownloadFile key={i} down={down}/>
       })}
     </ul>
   )
