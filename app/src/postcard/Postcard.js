@@ -39,7 +39,6 @@ const PostCard = (props, state) => {
 
   let download = (
     <ul className="downloads">
-    {/*TODO: add heading*/}
       <h5 style={{"margin-left": "10px"}}>Attachments</h5>
       
       {resorc.map((down, i) => {

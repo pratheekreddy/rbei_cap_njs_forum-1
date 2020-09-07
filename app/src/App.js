@@ -11,8 +11,6 @@ class App extends Component {
 
 
   render() {
-    //    console.log(Object.keys(process.env))
-    // console.log(props)
     return (
       <Router>
         <div>
