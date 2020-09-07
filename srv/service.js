@@ -35,7 +35,7 @@ module.exports = cds.service.impl(srv => {
             //will return only one record as email_id is the key
             let participants = srv.entities.participants
             const result = await cds.run(SELECT.from(participants).columns(['EMAIL_ID', 'STATUS', 'TYPE']).where('EMAIL_ID=', requester))
-            console.log(result)
+            console.log('query result ', result)
             if (result.length === 0) req.reject(
                 401,
                 'unauthorized'
@@ -45,8 +45,12 @@ module.exports = cds.service.impl(srv => {
                 401,
                 'unauthorized'
             );
-            req.data.rbei_access_role = result[0].TYPE;
-            req.data.user = EMAIL_ID;
+            const user = {
+                rbei_access_role : result[0].TYPE,
+                email_id : EMAIL_ID
+            };
+            req._.req.user = user;
+            console.log('Inside * event handler', req._.req.user);
         } catch (error) {
             req.reject(
                 401,
@@ -56,10 +60,12 @@ module.exports = cds.service.impl(srv => {
     })
 
     srv.before('CREATE', 'sessions', (req) => {
-        if (req.data.rbei_access_role != 'A') return req.reject(401, 'unauthorized');
+        console.log('printing payload ', req.data);
+        console.log('Inside CREATE event handler', req._.req.user);
+        // if(req._.user.rbei_access_role != 'A') return req.reject(401, 'unauthorized');
         const session_id = 'S_' + Date.now();
         req.data.ID = session_id;
-        req.data.S_CREATED_BY = req.data.user;
+        req.data.S_CREATED_BY = 'kattapratheek.reddy@in.bosch.com';
         req.data.S_CREATED_ON = new Date().toISOString();
         let counter = 00;
         req.data.TOPICS.forEach(topic => {
