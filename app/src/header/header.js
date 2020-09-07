@@ -1,15 +1,16 @@
-import React , { useState } from 'react'
+import React /*, { useState }*/ from 'react'
 import {withRouter,Link} from 'react-router-dom'
 import logo from './bosch_logo.jpg'
 import './header.scss'
 
 const header=(props)=> {
-    const [signup, setSignup] = useState(false);
+    // const [signup, setSignup] = useState(false);
     //   console.log(props)
+    let signup=true
       if(props.location.pathname==='/'|| props.location.pathname==='/signup'){
-          setSignup(true)
+          signup=true
       }else{
-          setSignup(false)
+          signup=false
         }
 
       let welcome=(
