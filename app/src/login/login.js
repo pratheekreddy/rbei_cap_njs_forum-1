@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import './login.scss'
 const Login = (props) => {
-    let token = localStorage.getItem('token')
-    axios.defaults.headers.common['Authorization'] = token;
+    // let token = localStorage.getItem('token')
+    // axios.defaults.headers.common['Authorization'] = token;
     // console.log(props)
     const [showOTP, setshowOTP] = useState(false);
     let email = ''
@@ -35,11 +35,14 @@ const Login = (props) => {
             // console.log(result)
             if (result.status === 200) {
                 header = result.data.token
-                props.history.push({pathname:'/landing'})
+                
                 localStorage.setItem('token',header)
                 localStorage.setItem('type',result.data.type)
                 localStorage.setItem('name',result.data.name)
                 localStorage.setItem('email',result.data.email)
+                if(localStorage.getItem('token')){
+                props.history.push({pathname:'/landing'})
+                }
             }
             else{
                 alert(result.data.msg)
@@ -47,6 +50,7 @@ const Login = (props) => {
             // console.log(header)
         }).catch((e) => {
             console.log(e)
+            alert(e.response.data.msg);
         })
     }
     let emailContainer = (

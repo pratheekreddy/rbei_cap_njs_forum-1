@@ -95,7 +95,17 @@ modules:
    build-parameters:
       supported-platforms: []
       build-result: build        # This is the folder containing the build files
-   
+   requires:
+    - name: srv-api
+      group: destinations
+      properties:
+        name: odata_api
+        url: ~{srv-url}
+    - name: rbei_njs_forum_api
+      group: destinations
+      properties:
+        name: node_api
+        url: ~{url}
 
  # --------------------- APPROUTER MODULE ---------------------
  - name: my-approuter

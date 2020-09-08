@@ -16,10 +16,10 @@ router.get('/otp',async(req,res)=>{
 	
 	let user=await client.exec(userQ)
 	if(user.length===0){
-		return res.status(400).send({ msg : "User not registered "})
+		return res.status(401).send({ msg : "User not registered "})
 	}
 	if(user[0].STATUS!='A'){
-		return res.status(400).send({ msg : "User is not approved. Please contact Adminstrator!"})
+		return res.status(401).send({ msg : "User is not approved. Please contact Adminstrator!"})
 	}
 	//TODO: generate, store and send otp
 	let otp=Math.round(Math.random() * (900000 - 100000) + 100000);
