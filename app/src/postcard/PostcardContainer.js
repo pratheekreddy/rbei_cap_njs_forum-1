@@ -23,6 +23,7 @@ class PostcardContainer extends Component {
             })
             .catch((e) => {
                 alert(e.response.data.msg)
+                props.history.push({pathname:'/'})
                 this.setState({ session: [] });
             });
     };

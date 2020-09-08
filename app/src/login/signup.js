@@ -3,7 +3,7 @@ import axios from 'axios';
 import './signup.scss'
 
 const signup = (props) => {
-    let email,idno,name,ntid,dept,username 
+    let email,idno,name,ntid,dept,username ;
     // console.log(props)
     let register=()=>{
         email=document.getElementById('email').value
@@ -16,14 +16,14 @@ const signup = (props) => {
             email, idno,name,ntid,dept,username
         });
         post.then((result) => {
-            console.log(result)
-            alert(result.data.msg)
+            console.log(result);
+            alert(result.data.msg);
             if (result.status === 201) {
-                props.history.push({pathname:'/'})
+                props.history.push({pathname:'/'});
             }
 
         }).catch((e) => {
-            console.log(e.response.data.msg)
+            console.log(e.response.data.msg);
         })
     }
     return(
@@ -48,4 +48,4 @@ const signup = (props) => {
     )
 }
 
-export default signup
+export default signup;

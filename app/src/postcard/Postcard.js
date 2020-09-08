@@ -8,30 +8,30 @@ import "./postcard.scss";
 
 
 const PostCard = (props, state) => {
-    let t = localStorage.getItem('token')
-    let email_local = localStorage.getItem('email')
-    let token='requester='+email_local+';rbei_access_token='+t
+    let t = localStorage.getItem('token');
+    let email_local = localStorage.getItem('email');
+    let token='requester='+email_local+';rbei_access_token='+t;
     axios.defaults.headers.common['Authorization'] = token;  
   const [showResources, setShowResources] = useState(false);
   let topics = [];
   let presento = [];
   let resorc = [];
   for (let i = 0; i < props.topics.length; i++) {
-    topics.push(props.topics[i].SUB_TOPIC)
-    presento.push(props.topics[i].USER_EMAIL)
+    topics.push(props.topics[i].SUB_TOPIC);
+    presento.push(props.topics[i].USER_EMAIL);
   }
   for (let j = 0; j < props.files.length; j++) {
-    let t=props.files[j].FILE_NAME.split('-')
-    resorc.push([t[t.length-1], props.files[j].FILE_NAME])
+    let t=props.files[j].FILE_NAME.split('-');
+    resorc.push([t[t.length-1], props.files[j].FILE_NAME]);
   }
-  let presentors = [...new Set(presento)]
-  topics=[...new Set(topics)]
-  let str = topics.toString()
+  let presentors = [...new Set(presento)];
+  topics=[...new Set(topics)];
+  let str = topics.toString();
 
   let list = (
     <div>
       {presentors.map((presontor, i) => {
-        let ref="mailto:"+presontor
+        let ref="mailto:"+presontor;
         return <li key={i}><a style={{color:"#868686"}} href={ref}>{presontor}</a></li>
       })}
     </div>
@@ -47,12 +47,13 @@ const PostCard = (props, state) => {
       })}
     </ul>
   )
-  let file
+  let file;
   let formSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('files', file);
-    formData.append('session_id', props.session_id)
+    formData.append('session_id', props.session_id);
+    formData.append('uploaded_by',localStorage.getItem('name'));
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
@@ -62,19 +63,20 @@ const PostCard = (props, state) => {
       .then((response) => {
         // console.log(response)
         if(response.status===200){
-        alert(response.data.status);}
+        alert(response.data.status);
+        }
       }).catch((e) => {
-          alert(e.response.data.msg)
+          alert(e.response.data.msg);
       });
   }
 
   let onChange = (e) => {
     file = e.target.files[0];
-    formSubmit(e)
+    formSubmit(e);
   }
 
   let sendEmail=()=>{
-      axios.get('/node/publishagenda?session_id='+props.session_id)
+      axios.get('/node/publishagenda?session_id='+props.session_id);
   }
 
   let emailicon=(

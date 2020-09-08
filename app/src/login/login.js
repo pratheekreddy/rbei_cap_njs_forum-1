@@ -35,22 +35,24 @@ const Login = (props) => {
         post.then((result) => {
             // console.log(result)
             if (result.status === 200) {
-                header = result.data.token
-                
-                localStorage.setItem('token',header)
-                localStorage.setItem('type',result.data.type)
-                localStorage.setItem('name',result.data.name)
-                localStorage.setItem('email',result.data.email)
+                header = result.data.token;
+                localStorage.setItem('token',header);
+                localStorage.setItem('type',result.data.type);
+                localStorage.setItem('name',result.data.name);
+                localStorage.setItem('email',result.data.email);
                 if(localStorage.getItem('token')){
-                props.history.push({pathname:'/landing'})
+                props.history.push({pathname:'/landing'});
+                }
+                else{
+                    props.history.push({pathname:'/'});
                 }
             }
             else{
-                alert(result.data.msg)
+                alert(result.data.msg);
             }
             // console.log(header)
         }).catch((e) => {
-            console.log(e)
+            console.log(e);
             alert(e.response.data.msg);
         })
     }
@@ -83,4 +85,4 @@ const Login = (props) => {
     )
 }
 
-export default Login
+export default Login;
