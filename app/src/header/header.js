@@ -1,14 +1,17 @@
-import React from 'react'
+import React /*, { useState }*/ from 'react'
 import {withRouter,Link} from 'react-router-dom'
 import logo from './bosch_logo.jpg'
 import './header.scss'
 
 const header=(props)=> {
-    let signup=false
+    // const [signup, setSignup] = useState(false);
     //   console.log(props)
+    let signup=true
       if(props.location.pathname==='/'|| props.location.pathname==='/signup'){
           signup=true
-      }else{signup=false}
+      }else{
+          signup=false
+        }
 
       let welcome=(
         <h3>Welcome {localStorage.getItem('name')}</h3>

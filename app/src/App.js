@@ -11,8 +11,6 @@ class App extends Component {
 
 
   render() {
-    //    console.log(Object.keys(process.env))
-    // console.log(props)
     return (
       <Router>
         <div>
@@ -21,6 +19,7 @@ class App extends Component {
           </div>
           <Switch>
             <Route exact path="/" component={Login} />
+            <Route exact path="/index.html" component={Login} />
             <Route exact path="/landing" component={PostcardContainer} />
             <Route exact path="/signup" component={Signup}/>
           </Switch>
