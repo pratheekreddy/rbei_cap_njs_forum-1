@@ -13,6 +13,9 @@ const download=(props)=> {
             // console.log(result)
             fileDownload(result.data, down[0]);
     })
+    .catch(e=>{
+        alert(e.response.data.msg)
+    })
     }
     return(
         

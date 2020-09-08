@@ -19,7 +19,8 @@ const Login = (props) => {
             setshowOTP(true);
             alert(result.data.msg)
         }).catch((e) => {
-            console.log(e)
+            alert(e.response.data.msg)
+            console.log(e.response.data.msg)
         })
     }
 

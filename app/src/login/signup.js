@@ -23,7 +23,7 @@ const signup = (props) => {
             }
 
         }).catch((e) => {
-            console.log(e)
+            console.log(e.response.data.msg)
         })
     }
     return(

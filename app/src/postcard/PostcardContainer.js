@@ -22,7 +22,7 @@ class PostcardContainer extends Component {
                 this.setState({ session: result.data.value });
             })
             .catch((e) => {
-                console.log(e)
+                alert(e.response.data.msg)
                 this.setState({ session: [] });
             });
     };

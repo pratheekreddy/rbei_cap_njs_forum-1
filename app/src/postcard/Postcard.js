@@ -63,7 +63,8 @@ const PostCard = (props, state) => {
         // console.log(response)
         if(response.status===200){
         alert(response.data.status);}
-      }).catch((error) => {
+      }).catch((e) => {
+          alert(e.response.data.msg)
       });
   }
 
