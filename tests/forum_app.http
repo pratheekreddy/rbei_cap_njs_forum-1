@@ -1,0 +1,47 @@
+### GET FEED
+GET http://localhost:4004/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
+
+### POST SESSIONS
+POST http://localhost:4004/agenda/sessions
+Content-Type: application/json
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
+
+{
+    "DATE": "2020-09-08",
+    "TITLE": "Node Forum",
+    "DESC": "This session is on nest.js",
+    "TOPICS": [
+        {
+            "USER_EMAIL": "krishnan.gautam@in.bosch.com",
+            "SUB_TOPIC": "nest.js"
+        }
+    ]
+}
+
+
+### GET OTP
+GET http://localhost:3330/user/auth/otp?user=krishnan.gautam@in.bosch.com
+
+
+### POST SIGNUP
+POST http://localhost:3330/user/signup
+Content-Type: application/json
+
+{
+    "email": "kattapratheek.reddy@in.bosch.com",
+    "idno": "33447890",
+    "name": "Katta Reddy",
+    "ntid": "TKT2KOR",
+    "dept": "RBEI/BSL7",
+    "username": "Katta"
+}
+
+### POST ADMIN-APPROVAL
+POST http://localhost:3330/userapprove
+Content-Type: application/json
+
+{
+    "email_id" : "krishnan.gautam@in.bosch.com",
+    "status" : "A"
+}
