@@ -1,38 +1,41 @@
 {
-  "name": "forum_app",
-  "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
-  "dependencies": {
-    "@sap/cds": "^4",
-    "@sap/hana-client": "^2.4.177",
-    "express": "^4",
-    "hdb": "^0.18.1"
-  },
-  "devDependencies": {
-    "@sap/hdi-deploy": "3.11.11",
-    "sqlite3": "^4"
-  },
-  "scripts": {
-    "start": "npx cds run"
-  },
-  "cds": {
-    "hana": {
-      "deploy-format": "hdbtable"
+    "name": "forum_app",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^4",
+        "@sap/hana-client": "^2.4.177",
+        "express": "^4",
+        "hdb": "^0.18.1"
     },
-    "requires": {
-      "db": {
-        "kind": "hana",
-        "model": [
-          "db",
-          "srv"
-        ]
-      }
+    "devDependencies": {
+        "@sap/hdi-deploy": "3.11.11",
+        "sqlite3": "^4"
     },
-    "odata": {
-      "version": "v4"
+    "scripts": {
+        "start": "npx cds run"
+    },
+    "cds": {
+        "hana": {
+            "deploy-format": "hdbtable"
+        },
+        "requires": {
+            "db": {
+                "kind": "hana",
+                "model": [
+                    "db",
+                    "srv"
+                ]
+            },
+            "auth": {
+                "impl": "srv/auth.js"
+            }
+        },
+        "odata": {
+            "version": "v4"
+        }
     }
-  }
 }
