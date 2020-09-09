@@ -18,9 +18,9 @@ class App extends Component {
             <Headers user={this.user}/>
           </div>
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/index.html" component={Login} />
-            <Route exact path="/landing" component={PostcardContainer} />
+            <Route exact path="/" component={PostcardContainer} />
+            <Route exact path="/index.html" component={PostcardContainer} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup}/>
           </Switch>
           <div className="footer">

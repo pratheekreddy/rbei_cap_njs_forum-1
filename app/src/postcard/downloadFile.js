@@ -8,7 +8,7 @@ const download=(props)=> {
     const tempName = down[0].split('.');
     // console.log(down)
     let filedown=()=>{
-        axios.get('/node/file/download?filename='+down[1])
+        axios.get('/node/file/download?filename='+down[1],{responseType: 'blob'})
             .then((result)=>{
             // console.log(result)
             fileDownload(result.data, down[0]);

@@ -11,6 +11,9 @@ class PostcardContainer extends Component {
     }
     reset = () => {
         let t = localStorage.getItem('token')
+        if(!t){
+            return this.props.history.push({pathname:'/login'});
+        }
         let email_local = localStorage.getItem('email')
         let token='requester='+email_local+';rbei_access_token='+t
         axios.defaults.headers.common['Authorization'] = token;
@@ -22,8 +25,9 @@ class PostcardContainer extends Component {
                 this.setState({ session: result.data.value });
             })
             .catch((e) => {
-                alert(e.response.data.msg)
-                props.history.push({pathname:'/'})
+                alert('Please login again')
+                // console.log(this.props.history)
+                this.props.history.push({pathname:'/login'})
                 this.setState({ session: [] });
             });
     };

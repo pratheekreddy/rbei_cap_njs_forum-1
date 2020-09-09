@@ -14,6 +14,9 @@ const Login = (props) => {
     let getOtp = () => {
         // console.log('getotp')
         email=document.getElementById('email').value
+        if(!email){
+            return alert('please enter a valid username or email')
+        }
         const post = axios.get('/node/user/auth/otp?user=' + email);
         post.then((result) => {
             setshowOTP(true);
@@ -27,6 +30,9 @@ const Login = (props) => {
     let validateOtp = () => {
         let user=document.getElementById('email').value
         otp=document.getElementById('otp').value
+        if(!otp){
+            return alert('please enter a valid otp')
+        }
         // console.log(user)
         // console.log('validate otp')
         const post = axios.post('/node/user/auth/login', {
@@ -36,19 +42,21 @@ const Login = (props) => {
             // console.log(result)
             if (result.status === 200) {
                 header = result.data.token;
+                let name=result.data.name
                 localStorage.setItem('token',header);
                 localStorage.setItem('type',result.data.type);
-                localStorage.setItem('name',result.data.name);
+                localStorage.setItem('name',name.split(' ')[0]);
                 localStorage.setItem('email',result.data.email);
                 if(localStorage.getItem('token')){
-                props.history.push({pathname:'/landing'});
+                props.history.push({pathname:'/'});
                 }
                 else{
-                    props.history.push({pathname:'/'});
+                    props.history.push({pathname:'/login'});
                 }
             }
             else{
                 alert(result.data.msg);
+                props.history.push({pathname:'/login'});
             }
             // console.log(header)
         }).catch((e) => {

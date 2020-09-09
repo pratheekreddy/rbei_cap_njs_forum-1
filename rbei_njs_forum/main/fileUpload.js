@@ -109,8 +109,8 @@ router.get('/download', (req, res) => {
         // res.set('Content-Type', 'application/pdf');
         // res.contentType('Form.pdf')
         let name = filename.split('-');
-        console.log(name);
-        res.setHeader('Content-disposition', 'attachment; filename=' + name[(name.length) - 1]);
+        // console.log(name);
+        // res.setHeader('Content-disposition', 'attachment; filename=' + name[(name.length) - 1]);
         res.send(data.Body);
     });
 

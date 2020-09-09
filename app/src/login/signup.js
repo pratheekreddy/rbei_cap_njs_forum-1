@@ -6,12 +6,16 @@ const signup = (props) => {
     let email,idno,name,ntid,dept,username ;
     // console.log(props)
     let register=()=>{
+        
         email=document.getElementById('email').value
         idno=document.getElementById('idno').value
         name=document.getElementById('name').value
         ntid=document.getElementById('ntid').value
         dept=document.getElementById('dept').value
         username=document.getElementById('username').value
+        if(!email|| !idno || !name || !ntid || !dept){
+            return alert('please enter credientials')
+        }
         const post = axios.post('/node/user/signup', {
             email, idno,name,ntid,dept,username
         });
@@ -19,10 +23,11 @@ const signup = (props) => {
             console.log(result);
             alert(result.data.msg);
             if (result.status === 201) {
-                props.history.push({pathname:'/'});
+                props.history.push({pathname:'/login'});
             }
 
         }).catch((e) => {
+            alert(e.response.data.msg)
             console.log(e.response.data.msg);
         })
     }
