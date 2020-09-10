@@ -1,20 +1,20 @@
 import React from "react";
 import axios from 'axios';
 import './profile.scss';
+import { withRouter } from 'react-router-dom';
 
 const Profile = (props) => {
     let update = () => {
 
-        // email = document.getElementById('email').value
-        // idno = document.getElementById('idno').value
-        name = document.getElementById('name').value
-        // ntid = document.getElementById('ntid').value
-        dept = document.getElementById('dept').value
-        username = document.getElementById('username').value
-        if (!email || !idno || !name || !ntid || !dept) {
-            return alert('please enter credientials')
-        }
+       let name = document.getElementById('name').value;
+       let dept = document.getElementById('dept').value;
+       let username = document.getElementById('username').value;
 
+    }
+
+    let enableElement = (e) => {
+        console.log(e);
+        document.getElementById("username").disabled = false;
     }
     return (
         <div>
@@ -24,17 +24,20 @@ const Profile = (props) => {
                 <label>Id number </label>
                 <input type='text' placeholder="33378755" id="idno" disabled></input>
                 <label>Full Name </label>
-                <input type='text' placeholder="Enter your Full Name" id="name"></input>
+                <input type='text' placeholder="Gautam Krishnan" id="name" disabled></input>
+                <i className="boschicon-bosch-ic-edit" onClick={enableElement}></i>
                 <label>NT-ID </label>
                 <input type='text' placeholder="TKG1KOR" id="ntid" disabled></input>
                 <label>Department </label>
-                <input type='text' placeholder="Enter your Department" id="dept"></input>
+                <input type='text' placeholder="RBEI/BLS5" id="dept" disabled></input>
+                <i className="boschicon-bosch-ic-edit" onClick={enableElement}></i>
                 <label>Username </label>
-                <input type='text' placeholder="Enter your Username" id="username"></input>
+                <input type='text' placeholder="Gomzi" id="username" disabled></input>
+                <i className="boschicon-bosch-ic-edit" onClick={enableElement}></i>
                 <button className="rb-button rb-button--primary" onClick={update}>Update</button>
             </div>
         </div>
-    )
+    );
 }
 
 
