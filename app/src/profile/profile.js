@@ -12,9 +12,8 @@ const Profile = (props) => {
 
     }
 
-    let enableElement = (e) => {
-        console.log(e);
-        document.getElementById("username").disabled = false;
+    let enableElement = (id) => {
+        document.getElementById(id).disabled = false;
     }
     return (
         <div>
@@ -25,15 +24,15 @@ const Profile = (props) => {
                 <input type='text' placeholder="33378755" id="idno" disabled></input>
                 <label>Full Name </label>
                 <input type='text' placeholder="Gautam Krishnan" id="name" disabled></input>
-                <i className="boschicon-bosch-ic-edit" onClick={enableElement}></i>
+                <i className="boschicon-bosch-ic-edit" onClick={(() => enableElement("name"))}></i>
                 <label>NT-ID </label>
                 <input type='text' placeholder="TKG1KOR" id="ntid" disabled></input>
                 <label>Department </label>
                 <input type='text' placeholder="RBEI/BLS5" id="dept" disabled></input>
-                <i className="boschicon-bosch-ic-edit" onClick={enableElement}></i>
+                <i className="boschicon-bosch-ic-edit" onClick={(() => enableElement("dept"))}></i>
                 <label>Username </label>
                 <input type='text' placeholder="Gomzi" id="username" disabled></input>
-                <i className="boschicon-bosch-ic-edit" onClick={enableElement}></i>
+                <i className="boschicon-bosch-ic-edit" onClick={(() => enableElement("username"))}></i>
                 <button className="rb-button rb-button--primary" onClick={update}>Update</button>
             </div>
         </div>
