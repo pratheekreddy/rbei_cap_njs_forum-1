@@ -52,26 +52,13 @@ GET http://localhost:4004/profile/readprofile(email='krishnan.gautam@in.bosch.co
 # Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
 
 ### PUT UPDATE PROFILE
-PUT http://localhost:4004/profile/updateprofile('krishnan.gautam@in.bosch.com')
+PATCH http://localhost:4004/profile/updateprofile('krishnan.gautam@in.bosch.com')
 Content-Type: application/json
 # Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
 
 {
-    "DEPT": "RBEI/BSL7",
-    "USERNAME": "Kunjuu"
+    "DEPT": "RBEI/BSL5",
+    "USERNAME": "Gomzi"
 }
 
 
-### POST UPDATE PROFILE
-POST http://localhost:4004/profile/updateprofile
-Content-Type: application/json
-# Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
-
-{
-    "EMAIL_ID": "riya.athreya@in.bosch.com",
-    "IDNO": "33378755",
-    "NAME": "Gautam Krishnan",
-    "NTID" : "TKG1KOR",
-    "DEPT": "RBEI/BSL7",
-    "USERNAME": "Kunjuu"
-}
