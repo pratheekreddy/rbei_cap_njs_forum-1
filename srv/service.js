@@ -19,7 +19,18 @@ module.exports = cds.service.impl(srv => {
         })
     })
 
-    srv.before('UPDATE', 'updateprofile', (req) => {
+    srv.before('UPDATE', 'updateprofile', async (req) => {
+        const fieldsToUpdate = Object.keys(req.data);
+        if (fieldsToUpdate.includes('USERNAME')) {
+            try {
+                const username = req.data.USERNAME;
+                let email = req.params[0].EMAIL_ID;
+                const result = await cds.run('SELECT COUNT(EMAIL_ID) AS COUNT FROM RBEI_NODE_FORUM_T_MD_USER WHERE EMAIL_ID != ? AND USERNAME = ?', [email, username]);
+                if (result[0].COUNT != 0) return req.reject(403, 'username already taken');
+            } catch (error) {
+                req.error(500, error);
+            }
+        }
         req.data['CHANGED_ON'] = new Date().toISOString();
     })
 

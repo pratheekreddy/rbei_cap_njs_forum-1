@@ -57,8 +57,7 @@ Content-Type: application/json
 # Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
 
 {
-    "DEPT": "RBEI/BSL5",
-    "USERNAME": "Gomzi"
+    "DEPT": "RBEI/BSL5"
 }
 
 
