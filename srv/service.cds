@@ -31,3 +31,18 @@ service profile @(requires : 'authenticated-user') {
         DeleteRestrictions : {Deletable : false}
     })                                      as projection on rbei.T_MD_USER;
 }
+
+service userapproval  @(requires : 'authenticated-user'){
+    @readonly
+    entity user_list as
+        select from rbei.T_MD_USER {
+            EMAIL_ID,
+            IDNO,
+            NAME,
+            NTID,
+            DEPT,
+            USERNAME,
+            REGD_ON
+        } where (STATUS is null or STATUS = '' or STATUS = 'R');
+ 
+}

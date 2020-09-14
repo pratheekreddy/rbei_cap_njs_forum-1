@@ -34,4 +34,10 @@ module.exports = cds.service.impl(srv => {
         req.data['CHANGED_ON'] = new Date().toISOString();
     })
 
+    srv.before('READ', 'user_list', (req) => {
+        const { id } = req._.req.user;
+        const rbei_access_role = req._.req.rbei_access_role;
+        console.log(rbei_access_role)
+        if (rbei_access_role != 'A') return req.reject(401, 'unauthorized');
+    })
 })
