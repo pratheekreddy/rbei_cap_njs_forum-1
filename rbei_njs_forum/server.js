@@ -25,7 +25,7 @@ var hanaOptions = xsenv.getServices({
 		tag: "hana"
 	}
 });
-console.log(hanaOptions)
+// console.log(hanaOptions)
 
 module.exports=hanaOptions;
 
@@ -44,6 +44,7 @@ app.use('/user/auth',require("./login/getOTP"));
 app.use('/user/auth',require("./login/login"));
 app.use('/publishagenda', require('./main/email.js'));
 app.use('/file',require('./main/fileUpload.js'));
+app.use('/admin',require('./main/userApprove'))
 	
 app.listen(port, () => {
 	console.log(`myapp is using Node.js version: ${process.version}`); 

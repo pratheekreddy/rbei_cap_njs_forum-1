@@ -1,5 +1,4 @@
-const cds = require('@sap/cds')
-const jwt = require('jsonwebtoken')
+const cds = require('@sap/cds');
 
 module.exports = cds.service.impl(srv => {
 
@@ -19,4 +18,9 @@ module.exports = cds.service.impl(srv => {
             counter++;
         })
     })
+
+    srv.before('UPDATE', 'updateprofile', (req) => {
+        req.data['CHANGED_ON'] = new Date().toISOString();
+    })
+
 })
