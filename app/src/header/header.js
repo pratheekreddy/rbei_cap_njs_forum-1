@@ -1,6 +1,7 @@
 import React /*, { useState }*/ from 'react'
 import {withRouter,Link} from 'react-router-dom'
 import logo from './bosch_logo.jpg'
+import List from '../profile/list'
 import './header.scss'
 
 const header=(props)=> {
@@ -14,7 +15,7 @@ const header=(props)=> {
         }
 
       let welcome=(
-        <h3>Welcome {localStorage.getItem('name')}</h3>
+        <List className='h3'></List>
       )
       let nav=(
           <div className="signup">

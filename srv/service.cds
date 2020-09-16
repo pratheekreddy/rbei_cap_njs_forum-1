@@ -31,7 +31,3 @@ service profile {
         ReadRestrictions   : {Readable : false}
     })                                      as select from rbei.T_MD_USER;
 }
-
-service admin {
-    entity users as select FROM rbei.T_MD_USER {EMAIL_ID,NAME,DEPT,IDNO,NTID,REGD_ON,USERNAME} where STATUS !='A';
-}
