@@ -17,7 +17,7 @@ const triggerEmail=require('../email/email.js')
  		return res.status(400).send({msg:"user name already exist"})
  	}
  	
- 	let userinsertQ="insert into RBEI_NODE_FORUM_T_MD_USER (EMAIL_ID,IDNO,NAME,NTID,DEPT,USERNAME,TYPE,REGD_ON) values('"+email+"','"+idno+"','"+name+"','"+ntid+"','"+dept+"','"+username+"','U',CURRENT_TIMESTAMP)"
+ 	let userinsertQ="insert into RBEI_NODE_FORUM_T_MD_USER (EMAIL_ID,IDNO,NAME,NTID,DEPT,USERNAME,TYPE,REGD_ON,STSTUS) values('"+email+"','"+idno+"','"+name+"','"+ntid+"','"+dept+"','"+username+"','U',CURRENT_TIMESTAMP,'')"
  	
  	let result= await client.exec(userinsertQ)
  	// console.log(result)

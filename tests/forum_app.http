@@ -38,11 +38,11 @@ Content-Type: application/json
 }
 
 ### POST ADMIN-APPROVAL
-POST http://localhost:3330/userapprove
+POST http://localhost:3330/admin/approve
 Content-Type: application/json
 
 {
-    "email_id" : "krishnan.gautam@in.bosch.com",
+    "email" : "pratheekreddy.katta@in.bosch.com",
     "status" : "A"
 }
 
