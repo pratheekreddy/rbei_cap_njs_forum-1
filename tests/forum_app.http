@@ -63,5 +63,6 @@ Content-Type: application/json
 GET http://localhost:4004/userapproval/user_list?$orderby=REGD_ON
 # Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
 
-
-
+### GET VALID USERNAME
+GET http://localhost:3330/user/valid?username=Lacchi
+# Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
