@@ -18,27 +18,36 @@ const auth = async (req, res, next) => {
         let rbei_access_token = headers[1].replace('rbei_access_token=', '');
 
         //verify the token.
-        
-        if (!(requester === EMAIL_ID)) return res.status(401).send({
-            msg: 'unauthorized'
-        });
+        query = `SELECT
+                    STATUS,
+                    TYPE,
+                    CASE
+                        WHEN GEN_RBEI_TOKEN = ? THEN
+                            CASE 
+                                WHEN SECONDS_BETWEEN(GEN_RBEI_TOKEN_TMSTMP, NOW())  <= 43200 THEN 1
+                                ELSE 0
+                            END
+                        ELSE -1
+                    END AS FLAG
+                    FROM RBEI_NODE_FORUM_T_MD_USER
+                    WHERE EMAIL_ID = ?`;
 
-
-        //will return only one record as email_id is the key
-        const query = 'SELECT EMAIL_ID, STATUS, TYPE FROM RBEI_NODE_FORUM_T_MD_USER WHERE EMAIL_ID = ?';
-        const client = req.db;
-        const result = await client.exec(query, [requester]);
+        result = await client.exec(query, [rbei_access_token, requester]);
         if (result.length === 0) return res.status(401).send({
             msg: 'unauthorized'
         });
 
-        if (result[0].STATUS != 'A') return res.status(403).send({
+        if (result[0].FLAG != 1) return res.status(401).send({
+            msg: 'unauthorized'
+        });
+        const { STATUS, TYPE } = result[0];
+
+
+        if (STATUS != 'A') return res.status(403).send({
             msg: 'You are not approved'
         });
 
-
-
-        req.rbei_access_role = result[0].TYPE;
+        req.rbei_access_role = TYPE;
         next();
     } catch (error) {
         console.log(error);
