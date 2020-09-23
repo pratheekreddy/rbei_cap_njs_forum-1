@@ -18,7 +18,7 @@ const auth = async (req, res, next) => {
         let rbei_access_token = headers[1].replace('rbei_access_token=', '');
 
         //verify the token.
-        query = `SELECT
+        let query = `SELECT
                     STATUS,
                     TYPE,
                     CASE
@@ -31,8 +31,9 @@ const auth = async (req, res, next) => {
                     END AS FLAG
                     FROM RBEI_NODE_FORUM_T_MD_USER
                     WHERE EMAIL_ID = ?`;
-
-        result = await client.exec(query, [rbei_access_token, requester]);
+                    
+        const client = req.db;
+        const result = await client.exec(query, [rbei_access_token, requester]);
         if (result.length === 0) return res.status(401).send({
             msg: 'unauthorized'
         });

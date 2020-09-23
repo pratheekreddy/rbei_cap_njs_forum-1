@@ -1,6 +1,6 @@
 const cds = require('@sap/cds');
 module.exports = async (req, res, next) => {
-    const { T_MD_USER } = cds.entities;
+    // const { T_MD_USER } = cds.entities;
     try {
 
         let authorization = req.headers.authorization;
@@ -19,17 +19,35 @@ module.exports = async (req, res, next) => {
 
 
         //will return only one record as email_id is the key
-        const result = await cds.run(SELECT.from(T_MD_USER).columns(['EMAIL_ID', 'STATUS', 'TYPE']).where('EMAIL_ID=', requester))
+        const result = await cds.run(`SELECT
+                    STATUS,
+                    TYPE,
+                    CASE
+                        WHEN GEN_RBEI_TOKEN = ? THEN
+                            CASE 
+                                WHEN SECONDS_BETWEEN(GEN_RBEI_TOKEN_TMSTMP, NOW())  <= 43200 THEN 1
+                                ELSE 0
+                            END
+                        ELSE -1
+                    END AS FLAG
+                    FROM RBEI_NODE_FORUM_T_MD_USER
+                    WHERE EMAIL_ID = ?`, [rbei_access_token, requester]);
         console.log('query result ', result)
         if (result.length === 0) return res.status(401).send({
             msg: 'unauthorized'
         });
 
-        if (result[0].STATUS != 'A') return res.status(403).send({
+        if (result[0].FLAG != 1) return res.status(401).send({
+            msg: 'unauthorized'
+        });
+        const { STATUS, TYPE } = result[0];
+
+
+        if (STATUS != 'A') return res.status(403).send({
             msg: 'You are not approved'
         });
-        req.user = new cds.User(EMAIL_ID);
-        req.rbei_access_role = result[0].TYPE;
+        req.user = new cds.User(requester);
+        req.rbei_access_role = TYPE;
         next()
     } catch (error) {
         console.log(error)

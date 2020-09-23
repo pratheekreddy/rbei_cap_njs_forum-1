@@ -6,7 +6,7 @@ const auth = require('../middleware/auth');
 
 router.post('/approve', auth, async (req, res) => {
 
-    if (req.rbei_access_role != 'A') res.status(401).send({
+    if (req.rbei_access_role != 'A') return res.status(401).send({
         msg: 'unauthorized'
     });
     let email = req.body.email;
