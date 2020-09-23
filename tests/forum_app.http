@@ -24,6 +24,16 @@ Content-Type: application/json
 GET http://localhost:3330/user/auth/otp?user=krishnan.gautam@in.bosch.com
 
 
+### POST LOGIN
+POST http://localhost:3330/user/auth/login
+Content-Type: application/json
+
+{
+    "user": "Gomzi",
+    "otp": 687104
+}
+
+
 ### POST SIGNUP
 POST http://localhost:3330/user/signup
 Content-Type: application/json

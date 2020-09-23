@@ -28,7 +28,7 @@ entity Sessions {
 		NOTIF_STATUS		:	String(1);
 		FILES				:	Composition of many Session_Files on FILES.SESSION = $self;
 }
-
+    
 entity Session_Topics {
 	key SESSION				:	Association to Sessions;
 	key	SUB_TOPIC_ID		:	String(50);
