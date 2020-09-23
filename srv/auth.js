@@ -1,5 +1,4 @@
 const cds = require('@sap/cds');
-const jwt = require('jsonwebtoken');
 module.exports = async (req, res, next) => {
     const { T_MD_USER } = cds.entities;
     try {
@@ -18,16 +17,6 @@ module.exports = async (req, res, next) => {
         let requester = headers[0].replace('requester=', '');
         let rbei_access_token = headers[1].replace('rbei_access_token=', '');
 
-        //verify the token.
-        let secretKey = '$7ckugsc@#~oindjsad%9';
-        const decoded = jwt.verify(rbei_access_token, secretKey);
-        const {
-            EMAIL_ID
-        } = decoded;
-        if (!(requester === EMAIL_ID)) return res.status(401).send({
-            msg: 'unauthorized'
-        });
-        console.log('token verification done');
 
         //will return only one record as email_id is the key
         const result = await cds.run(SELECT.from(T_MD_USER).columns(['EMAIL_ID', 'STATUS', 'TYPE']).where('EMAIL_ID=', requester))
