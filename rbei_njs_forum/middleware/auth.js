@@ -1,6 +1,4 @@
 "use strict";
-const jwt = require('jsonwebtoken');
-
 const auth = async (req, res, next) => {
 
     try {
@@ -20,11 +18,7 @@ const auth = async (req, res, next) => {
         let rbei_access_token = headers[1].replace('rbei_access_token=', '');
 
         //verify the token.
-        let secretKey = '$7ckugsc@#~oindjsad%9';
-        const decoded = jwt.verify(rbei_access_token, secretKey);
-        const {
-            EMAIL_ID
-        } = decoded;
+        
         if (!(requester === EMAIL_ID)) return res.status(401).send({
             msg: 'unauthorized'
         });
