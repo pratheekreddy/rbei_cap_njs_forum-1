@@ -1,20 +1,20 @@
 ### GET FEED
 GET http://localhost:4004/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc
-Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=B9480080F702A14B1700B616AE299581BA480080F702A14B1700B616AE299581BB480080F702A14B1700B616AE299581BC480080F702A14B1700B616AE299581
 
 ### POST SESSIONS
 POST http://localhost:4004/agenda/sessions
 Content-Type: application/json
-# Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=B9480080F702A14B1700B616AE299581BA480080F702A14B1700B616AE299581BB480080F702A14B1700B616AE299581BC480080F702A14B1700B616AE299581
 
 {
-    "DATE": "2020-09-08",
-    "TITLE": "Node Forum",
-    "DESC": "This session is on nest.js",
+    "DATE": "2020-10-01",
+    "TITLE": "HANA Forum",
+    "DESC": "This session is on performance in HANA",
     "TOPICS": [
         {
             "USER_EMAIL": "krishnan.gautam@in.bosch.com",
-            "SUB_TOPIC": "nest.js"
+            "SUB_TOPIC": "Union Node Pruning"
         }
     ]
 }
@@ -22,6 +22,16 @@ Content-Type: application/json
 
 ### GET OTP
 GET http://localhost:3330/user/auth/otp?user=krishnan.gautam@in.bosch.com
+
+
+### POST LOGIN
+POST http://localhost:3330/user/auth/login
+Content-Type: application/json
+
+{
+    "user": "Gomzi",
+    "otp": 318257
+}
 
 
 ### POST SIGNUP
@@ -39,6 +49,7 @@ Content-Type: application/json
 
 ### POST ADMIN-APPROVAL
 POST http://localhost:3330/admin/approve
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=B9480080F702A14B1700B616AE299581BA480080F702A14B1700B616AE299581BB480080F702A14B1700B616AE299581BC480080F702A14B1700B616AE299581
 Content-Type: application/json
 
 {

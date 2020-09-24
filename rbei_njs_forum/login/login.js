@@ -1,7 +1,6 @@
 "use strict";
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
 
 router.post('/login', async(req, res) => {
 	//destructuring request body
@@ -52,26 +51,16 @@ router.post('/login', async(req, res) => {
             NAME
 		} = result[0];
 
-		//converting token generated timestamp to appropriate UTC timestamp format, to store in the database.
-		const tokenGenTimeMilli = Date.now();
-		let tokenGenTmstmp = new Date(tokenGenTimeMilli);
-		tokenGenTmstmp = tokenGenTmstmp.toISOString();
-
-		//generating a JSON Web Token
-		let secretKey = '$7ckugsc@#~oindjsad%9';
-		const token = jwt.sign({
-			EMAIL_ID,
-			exp: Math.floor(tokenGenTimeMilli / 1000) + (12 * 3600)
-		}, secretKey);
-
 		//query to store token and token generated timestamp in database.
 		query =
 			`UPDATE RBEI_NODE_FORUM_T_MD_USER
-				SET GEN_RBEI_TOKEN = ?, GEN_RBEI_TOKEN_TMSTMP = ?
+				SET GEN_RBEI_TOKEN = concat(concat(concat(SYSUUID,SYSUUID),SYSUUID),SYSUUID), GEN_RBEI_TOKEN_TMSTMP = CURRENT_TIMESTAMP
 				WHERE EMAIL_ID = ?`;
-		await client.exec(query, [token, tokenGenTmstmp, EMAIL_ID])
+        await client.exec(query, [EMAIL_ID]);
+        query = `SELECT GEN_RBEI_TOKEN FROM RBEI_NODE_FORUM_T_MD_USER WHERE EMAIL_ID = ?`;
+        result = await client.exec(query, [EMAIL_ID]);
 		res.send({
-			token,
+			token: result[0].GEN_RBEI_TOKEN,
 			type: TYPE,
             email: EMAIL_ID,
             name:NAME

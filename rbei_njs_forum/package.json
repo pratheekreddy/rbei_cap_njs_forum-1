@@ -16,7 +16,6 @@
     "@sap/xsenv": "latest",
     "express": "latest",
     "nodemailer": "latest",
-    "jsonwebtoken": "latest",
     "multer": "latest",
     "@sap/hana-client": "latest",
     "cors": "latest",
