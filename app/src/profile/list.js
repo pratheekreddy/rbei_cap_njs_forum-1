@@ -12,37 +12,47 @@ const List = (props) => {
         localStorage.clear();
         // console.log(props)
         props.history.push({ pathname: '/login' });
+        setDisplay(false)
     }
 
     let profile = () => {
         props.history.push({ pathname: '/profile' });
+        setDisplay(false)
     }
 
     let approve = () => {
-
+        props.history.push({ pathname: '/aprove' });
+        setDisplay(false)
     }
 
     let postAgenda = () => {
+        props.history.push({ pathname: '/postagenda' });
+        setDisplay(false)
+    }
 
+    let home = () => {
+        props.history.push({ pathname: '/' });
+        setDisplay(false)
     }
 
     let admin = (<div>
-        <p onClick={approve}>Approve users</p>
-        <p onClick={postAgenda}>Post Agenda</p>
+        <li onClick={approve}>Approve users</li>
+        <li onClick={postAgenda}>Post Agenda</li>
     </div>
     )
 
     let list = (<div className="dropdown-content">
-        <p onClick={profile}>Your Profile</p>
+        <li onClick={home}>Home</li>
+        <li onClick={profile}>Your Profile</li>
         {type === 'A' ? admin : null}
-        <p onClick={signout}>Sign out</p>
+        <li onClick={signout}>Sign out</li>
     </div>)
 
     let toggle = () => {
         setDisplay(!display)
     }
     return (
-        <div className="dropdown">
+        <div className="dropdown" onBlur={() => setDisplay(false)} tabIndex="-1">
             <i className="boschicon-bosch-ic-user" onClick={toggle}></i>
             {display ? list : null}
         </div>

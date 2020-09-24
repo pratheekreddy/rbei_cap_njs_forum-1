@@ -90,9 +90,9 @@ const sendAgendaEmail = async(emailContent) => {
 
 	html = html.concat(topicPresenter, '</table><footer><h4>Thanks and Best Regards!</h4><p>P.S - This is an auto generated email. Please do not reply.</p></footer>')
 	let mailOptions = {
-		from: '"Node.js Forum " <rbei.node.js.forum@gmail.com>',
+		from: '"RBEI-SbS Forum <DO NOT REPLY> " <rbei.node.js.forum@gmail.com>',
 		to: to,
-		subject: 'Node.js Forum<no-reply>',
+		subject: 'Agenda',
 		html: html
 	}
 	let info = await transporter.sendMail(mailOptions);

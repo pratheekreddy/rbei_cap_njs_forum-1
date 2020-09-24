@@ -19,15 +19,15 @@ const header=(props)=> {
       )
       let nav=(
           <div className="signup">
-          <Link className="h3" to={{pathname:'/login'}}>Sign in</Link>
-          <Link className="h3" to={{pathname:'/signup'}} >Sign up</Link>
+          <Link to={{pathname:'/login'}}>Sign in</Link>
+          <Link to={{pathname:'/signup'}} >Sign up</Link>
           </div>
       )
     return (
         <header >
             <img src={logo} alt="Bosch Logo"></img>
 
-            <h1>Forum Feed</h1>
+            <h1>RBEI - SbS Forum</h1>
 
             {signup? nav : welcome }
         </header>
