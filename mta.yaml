@@ -108,7 +108,7 @@ modules:
         url: ~{url}
 
  # --------------------- APPROUTER MODULE ---------------------
- - name: my-approuter
+ - name: rb-sbs-forum
  # ------------------------------------------------------------
    type: approuter.nodejs
    path: approuter

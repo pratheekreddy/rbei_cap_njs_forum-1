@@ -27,8 +27,8 @@ router.get('/otp',async(req,res)=>{
 	console.log(insertQ)
 	let content={}
 	content.to=user[0].EMAIL_ID
-	content.subject='Login OTP'
-	content.html=`<h3>your otp is ${otp} valid till 30 minutes<h3>`
+	content.subject='Login OTP for RBEI-SbS Forum Portal'
+	content.html=`<h3>Your OTP is ${otp}. It is valid only for 30 minutes. Do not share it by any means.<h3>`
 	let insert= await client.exec(insertQ)
 	if(insert===1){
 		let temail=await triggerEmail(content)

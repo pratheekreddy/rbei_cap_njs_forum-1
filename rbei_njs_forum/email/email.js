@@ -11,7 +11,7 @@ const nodemailer=require('nodemailer')
 const triggerEmail=async (emailContent)=>{
 	console.log(emailContent.to)
 	let mailOptions = {
-		from: '"Node.js Forum " <rbei.node.js.forum@gmail.com>',
+		from: '"RBEI-SbS Forum <DO NOT REPLY> " <rbei.node.js.forum@gmail.com>',
 		to: emailContent.to,
 		subject: emailContent.subject,
 		html: emailContent.html
