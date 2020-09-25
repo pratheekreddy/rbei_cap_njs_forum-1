@@ -3,9 +3,9 @@ const express = require('express')
 const router = new express.Router()
 const client = require("@sap/hana-client");
 const hanaOptions=require('../server.js');
-const authentication = require('../middleware/auth') 
+const auth = require('../middleware/auth') 
 // console.log(hanaOptions);
-router.get('/', authentication ,async(req, res) => {
+router.get('/', auth ,async(req, res) => {
 	try {
 		// const {
 		// 	title,
