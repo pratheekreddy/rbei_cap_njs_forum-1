@@ -19,6 +19,9 @@ Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=B9480080
     ]
 }
 
+### GET SEND AGENDA EMAIL
+GET http://localhost:3330/admin/publishagenda?session_id=S_1597643528259
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=0E230050CD6A384C1700D756F0B886760F230050CD6A384C1700D756F0B8867610230050CD6A384C1700D756F0B8867611230050CD6A384C1700D756F0B88676
 
 ### GET OTP
 GET http://localhost:3330/user/auth/otp?user=krishnan.gautam@in.bosch.com
@@ -30,7 +33,7 @@ Content-Type: application/json
 
 {
     "user": "Gomzi",
-    "otp": 318257
+    "otp": 645095
 }
 
 
