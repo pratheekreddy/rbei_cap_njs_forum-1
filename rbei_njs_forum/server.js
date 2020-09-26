@@ -42,11 +42,10 @@ app.get('/', (req, res) => {
 app.use('/user',require('./login/signup'));
 app.use('/user/auth',require("./login/getOTP"));
 app.use('/user/auth',require("./login/login"));
-app.use('/publishagenda', require('./main/email.js'));
 app.use('/file',require('./main/fileUpload.js'));
 app.use('/admin',require('./main/userApprove'));
-app.use('/user', require('./main/validUsername'));
-app.use('/user/auth', require("./logout/logout"));
+app.use('/admin', require('./main/email.js'));
+app.use('/user', require('./main/validUsername'))
 	
 app.listen(port, () => {
 	console.log(`myapp is using Node.js version: ${process.version}`); 
