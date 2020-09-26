@@ -19,6 +19,7 @@ const auth = async (req, res, next) => {
 
         //verify the token.
         let query = `SELECT
+                    EMAIL_ID,
                     STATUS,
                     TYPE,
                     CASE
@@ -41,13 +42,14 @@ const auth = async (req, res, next) => {
         if (result[0].FLAG != 1) return res.status(401).send({
             msg: 'unauthorized'
         });
-        const { STATUS, TYPE } = result[0];
+        const { EMAIL_ID, STATUS, TYPE } = result[0];
 
 
         if (STATUS != 'A') return res.status(403).send({
             msg: 'You are not approved'
         });
 
+        req.email = EMAIL_ID;
         req.rbei_access_role = TYPE;
         next();
     } catch (error) {
