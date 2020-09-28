@@ -1,6 +1,6 @@
 ### GET FEED
 GET http://localhost:4004/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc
-Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=B9480080F702A14B1700B616AE299581BA480080F702A14B1700B616AE299581BB480080F702A14B1700B616AE299581BC480080F702A14B1700B616AE299581
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=569D0250CD6A384C1700D756F0B88676579D0250CD6A384C1700D756F0B88676589D0250CD6A384C1700D756F0B88676599D0250CD6A384C1700D756F0B88676
 
 ### POST SESSIONS
 POST http://localhost:4004/agenda/sessions
@@ -24,7 +24,7 @@ GET http://localhost:3330/admin/publishagenda?session_id=S_1597643528259
 Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=0E230050CD6A384C1700D756F0B886760F230050CD6A384C1700D756F0B8867610230050CD6A384C1700D756F0B8867611230050CD6A384C1700D756F0B88676
 
 ### GET OTP
-GET http://localhost:3330/user/auth/otp?user=krishnan.gautam@in.bosch.com
+GET http://localhost:3330/user/auth/otp?user=Gomzi
 
 
 ### POST LOGIN
@@ -80,3 +80,9 @@ GET http://localhost:4004/userapproval/user_list?$orderby=REGD_ON
 ### GET VALID USERNAME
 GET http://localhost:3330/user/valid?username=Lacchi
 # Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFTUFJTF9JRCI6ImtyaXNobmFuLmdhdXRhbUBpbi5ib3NjaC5jb20iLCJleHAiOjE1OTk1ODExOTMsImlhdCI6MTU5OTUzNzk5M30._8965BSXC43thZU6O0qE8omxByzlHmqrDDuOJMtgDqU
+
+
+### LOGOUT
+
+POST http://localhost:3330/user/auth/logout
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=569D0250CD6A384C1700D756F0B88676579D0250CD6A384C1700D756F0B88676589D0250CD6A384C1700D756F0B88676599D0250CD6A384C1700D756F0B88676
