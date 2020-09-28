@@ -34,6 +34,7 @@ const Signup = (props) => {
             }
 
         }).catch((e) => {
+            setloading(false)
             alert(e.response.data.msg)
             console.log(e.response.data.msg);
         })

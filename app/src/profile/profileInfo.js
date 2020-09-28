@@ -48,6 +48,9 @@ class ProfileInfo extends Component {
              alert('Profile updated sucessfully')
              localStorage.setItem('name',name)
          })
+         .catch(e=>{
+             this.setState({loading:false})
+         })
      }
 
      render(){

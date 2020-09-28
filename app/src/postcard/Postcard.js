@@ -71,6 +71,7 @@ const PostCard = (props, state) => {
         alert(response.data.status);
         }
       }).catch((e) => {
+          setLoading(false)
           alert(e.response.data.msg);
       });
   }
@@ -85,6 +86,8 @@ const PostCard = (props, state) => {
       axios.get('/node/admin/publishagenda?session_id='+props.session_id)
       .then(result=>{
         setLoading(false)
+      }).catch(e=>{
+          setLoading(false)
       })
   }
 

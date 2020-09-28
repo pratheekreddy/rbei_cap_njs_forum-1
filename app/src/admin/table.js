@@ -34,6 +34,7 @@ const Table = (props) => {
         })
         // let style={display:none}
         .catch(e=>{
+            setLoading(true)
             console.log(e)
         })
     }

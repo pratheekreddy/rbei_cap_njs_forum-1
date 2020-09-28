@@ -29,6 +29,7 @@ class Aprove extends Component {
             this.setState({users:result.data.value,loading:true})
         }).catch((e)=>{
             console.log(e)
+            this.setState({loading:true})
         })
     }
 

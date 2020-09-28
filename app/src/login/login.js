@@ -27,6 +27,7 @@ const Login = (props) => {
             alert(result.data.msg)
             setLoading(false)
         }).catch((e) => {
+            setLoading(false)
             alert(e.response.data.msg)
             console.log(e.response.data.msg)
         })
@@ -62,6 +63,7 @@ const Login = (props) => {
                 }
             }
             else{
+                setLoading(false)
                 alert(result.data.msg);
                 props.history.push({pathname:'/login'});
             }

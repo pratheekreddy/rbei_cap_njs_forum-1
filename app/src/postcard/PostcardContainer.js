@@ -32,6 +32,7 @@ class PostcardContainer extends Component {
             .catch((e) => {
                 alert('Please login again')
                 console.log(e)
+                this.setState({loading:true})
                 this.props.history.push({pathname:'/login'})
             });
     };

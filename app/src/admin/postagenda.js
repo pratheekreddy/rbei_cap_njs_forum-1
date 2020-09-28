@@ -59,6 +59,7 @@ const PostAgenda = (props) => {
         })
         .catch(e=>{
             console.log(e)
+            setLoading(false)
             alert('something went wrong')
         })
     }
