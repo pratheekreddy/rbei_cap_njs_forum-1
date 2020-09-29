@@ -86,3 +86,7 @@ GET http://localhost:3330/user/valid?username=Lacchi
 
 POST http://localhost:3330/user/auth/logout
 Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=569D0250CD6A384C1700D756F0B88676579D0250CD6A384C1700D756F0B88676589D0250CD6A384C1700D756F0B88676599D0250CD6A384C1700D756F0B88676
+
+
+
+GET  http://localhost:3330/user/search?search=scheduler
