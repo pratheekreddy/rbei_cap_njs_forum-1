@@ -42,6 +42,7 @@ app.get('/', (req, res) => {
 app.use('/user',require('./login/signup'));
 app.use('/user/auth',require("./login/getOTP"));
 app.use('/user/auth',require("./login/login"));
+app.use('/user/auth', require("./logout/logout"));
 app.use('/file',require('./main/fileUpload.js'));
 app.use('/admin',require('./main/userApprove'));
 app.use('/admin', require('./main/email.js'));
