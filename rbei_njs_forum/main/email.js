@@ -89,7 +89,7 @@ const sendAgendaEmail = async (emailContent) => {
     let mailOptions = {
         from: '"RBEI-SbS Forum <DO NOT REPLY> " <rbei.node.js.forum@gmail.com>',
         to: to,
-        subject: 'Agenda',
+        subject: `[RBEI-SbS Forum] Session: ${title}`,
         html: html
     }
     let info = await transporter.sendMail(mailOptions);

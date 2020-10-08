@@ -95,7 +95,7 @@ const PostCard = (props, state) => {
     <div className="admin-notify">
         <i data-tip data-for="emailTip" className="boschicon-bosch-ic-mail" onClick={sendEmail}></i>
           <ReactTooltip id="emailTip" place="top" effect="solid">
-                Email Subscribers
+                Email Participants
           </ReactTooltip>
       </div>
   )
@@ -140,7 +140,7 @@ const PostCard = (props, state) => {
       <div >{showResources ? download : null}</div>
 
 
-      <div>{(new Date(props.date) > new Date() ) &&localStorage.getItem('type')==='A' ? emailicon: null}</div>
+      <div>{(new Date(props.date).toISOString().substring(0,10) + "T18:29:59.000Z" >= new Date().toISOString()) &&localStorage.getItem('type')==='A' ? emailicon: null}</div>
       <div className="clear"></div>
       {loading? load : null}
     </div>

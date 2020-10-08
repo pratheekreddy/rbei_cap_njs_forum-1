@@ -19,7 +19,7 @@ router.get('/otp',async(req,res)=>{
 		return res.status(401).send({ msg : "User not registered "})
 	}
 	if(user[0].STATUS!='A'){
-		return res.status(401).send({ msg : "User is not approved. Please contact Adminstrator!"})
+		return res.status(401).send({ msg : "User is not approved. Please contact Administrator!"})
 	}
 	//TODO: generate, store and send otp
 	let otp=Math.round(Math.random() * (900000 - 100000) + 100000);
@@ -27,13 +27,13 @@ router.get('/otp',async(req,res)=>{
 	console.log(insertQ)
 	let content={}
 	content.to=user[0].EMAIL_ID
-	content.subject='Login OTP for RBEI-SbS Forum Portal'
+	content.subject='[RBEI-SbS Forum] Login OTP'
 	content.html=`<h3>Your OTP is ${otp}. It is valid only for 30 minutes. Do not share it by any means.<h3>`
 	let insert= await client.exec(insertQ)
 	if(insert===1){
 		let temail=await triggerEmail(content)
 		console.log(temail)
-		res.status(200).send({ msg:"OTP sent to your registered email id!"})
+		res.status(200).send({ msg:"Login OTP sent to your registered email id!"})
 	}
 	}
 	catch(e){

@@ -31,13 +31,14 @@ const triggerEmail=require('../email/email.js')
  	}
  	let content={}
  	content.to=admins.toString()
- 	content.subject='New User registration'
- 	content.html=`<p>${name} has registered to your application with ${email}.<p><br>
- 	<p>Please validate the user<p>`
- 	// console.log(content)
+ 	content.subject='[RBEI-SbS Forum] New User registration'
+ 	content.html=`<p>${name} has registered to the portal with ${email}.<p><br>
+     <p>Please validate the user<p>
+     <a href="https://rbei-cloud-foundry-dev-rb-sbs-forum.cfapps.eu10.hana.ondemand.com/aprove">Access Portal</a>`
+      	// console.log(content)
  	let temail=await triggerEmail(content)
  	// console.log(temail)
- 	res.status(201).send({msg:'user created. Approval in progress'})
+ 	res.status(201).send({msg:'User successfully registered. Once approved you will be notified through email.'})
  	}
  	catch(e){
  		// console.log(e)

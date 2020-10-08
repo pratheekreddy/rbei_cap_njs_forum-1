@@ -21,17 +21,17 @@ router.post('/approve', auth, async (req, res) => {
         let content = {}
         content.to = email
         if (status === 'A') {
-            content.subject = 'Approved'
-            content.html = `<p>Your Account has been approved.<p><br>
-        <p>Please Login<p>`
+            content.subject = '[RBEI-SbS Forum] Portal Access'
+            content.html = `<p>You have been granted access to the portal.<p><br>
+        <p>Kindly login using the link<p>
+        <a href="https://rbei-cloud-foundry-dev-rb-sbs-forum.cfapps.eu10.hana.ondemand.com">Access Portal</a>`
         } else {
-            content.subject = 'Approved'
-            content.html = `<p>Your Rejected has been approved.<p><br>
-        <p>Please Contact Administator<p>`
+            content.subject = '[RBEI-SbS Forum] Portal Access'
+            content.html = `<p>Your request has been rejected by the administrator.<p><br>`
         }
 
         let temail = await triggerEmail(content)
-        res.send({ msg: 'user approved' })
+        res.send({ msg: 'User request processed successfully' })
     }
     catch (e) {
         console.log(e)
