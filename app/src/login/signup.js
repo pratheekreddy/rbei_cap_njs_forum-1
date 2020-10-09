@@ -18,8 +18,8 @@ const Signup = (props) => {
         ntid=document.getElementById('ntid').value
         dept=document.getElementById('dept').value
         username=document.getElementById('username').value
-        if(!email|| !idno || !name || !ntid || !dept){
-            return alert('please enter credientials')
+        if(!email|| !name || !dept){
+            return alert('Please fill in the mandatory fields')
         }
         setloading(true)
         const post = axios.post('/node/user/signup', {
@@ -27,15 +27,15 @@ const Signup = (props) => {
         });
         post.then((result) => {
             console.log(result);
-            setloading(false)
+            setloading(false);
             alert(result.data.msg);
             if (result.status === 201) {
                 props.history.push({pathname:'/login'});
             }
 
         }).catch((e) => {
-            setloading(false)
-            alert(e.response.data.msg)
+            setloading(false);
+            alert(e.response.data.msg);
             console.log(e.response.data.msg);
         })
     }
@@ -71,14 +71,14 @@ const Signup = (props) => {
             <input type='text' placeholder="Enter your Email" id="email"></input>
             <label>Username </label>
             <input className={vuserName} type='text' onBlur={checkUsername} placeholder="Enter your Username" id="username"></input>
-            <label className="required">Employee Id</label>
-            <input type='text' placeholder="Enter your Employee Id" id="idno"></input>
             <label className="required">Full Name</label>
             <input type='text' placeholder="Enter your Full Name" id="name"></input>
-            <label className="required">NT-ID</label>
-            <input type='text' placeholder="Enter your NT ID" id="ntid"></input>
             <label className="required">Department</label>
-            <input type='text' placeholder="Enter your Department" id="dept"></input>
+            <input type='text' placeholder="Eg. RBEI/BSL1" id="dept"></input>
+            <label>Employee Id</label>
+            <input type='text' placeholder="Enter your Employee Id" id="idno"></input>
+            <label>NT-ID</label>
+            <input type='text' placeholder="Enter your NT ID" id="ntid"></input>
             <button className="rb-button rb-button--primary" onClick={register}>Signup</button>
         </div>
         {loading? load:null}

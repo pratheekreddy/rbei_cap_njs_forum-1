@@ -105,7 +105,7 @@ const PostCard = (props, state) => {
   return (
     <div className="card">
       <div className="head">
-        <label>{props.index + 1}</label>
+        <label>{props.index}</label>
         <strong>{str}</strong>
         <span><b>{props.date}</b></span>
       </div>

@@ -47,7 +47,7 @@ class PostcardContainer extends Component {
 
     render() {
         return (
-            this.state.loading?<Postcards session={this.state.session} /> : <Loading/>
+            this.state.loading?<Postcards session={this.state.session} no_of_sessions = {this.state.session.length} /> : <Loading/>
         )
     }
 }

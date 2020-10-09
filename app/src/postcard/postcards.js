@@ -7,7 +7,7 @@ const postcards = (props) => {
         props.session.map((sessions, index) => {
             return <Postcard
                 title={sessions.TITLE}
-                index={index}
+                index={props.no_of_sessions - index}
                 description={sessions.DESC}
                 date={sessions.DATE}
                 key={sessions.ID}
