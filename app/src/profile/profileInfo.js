@@ -64,8 +64,10 @@ class ProfileInfo extends Component {
             {/* <i className="boschicon-bosch-ic-edit" onClick={(() => this.enableElement("username"))}></i> */}
             <label>Employee ID </label>
             <input type='text' placeholder="33378755" id="idno" value={this.props.IDNO} disabled></input>
+            <i className="boschicon-bosch-ic-edit" onClick={(() => this.enableElement("dept"))}></i>
             <label>NT-ID </label>
             <input type='text' placeholder="TKG1KOR" value={this.props.NTID} id="ntid" disabled></input>
+            <i className="boschicon-bosch-ic-edit" onClick={(() => this.enableElement("dept"))}></i>
             <label>Full Name </label>
             <input type='text' placeholder="Gautam Krishnan" onChange={this.onChange} value={this.state.name} id="name" disabled></input>
             <i className="boschicon-bosch-ic-edit" onClick={(() => this.enableElement("name"))}></i>

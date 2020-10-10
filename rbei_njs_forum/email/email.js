@@ -16,8 +16,9 @@ const triggerEmail=async (emailContent)=>{
 		subject: emailContent.subject,
 		html: emailContent.html
 	}
-	
-	let info = await transporter.sendMail(mailOptions);
+	// console.log(emailContent);
+    let info = await transporter.sendMail(mailOptions);
+    // console.log(info);
 	
 	return info
 }
