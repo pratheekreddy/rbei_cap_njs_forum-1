@@ -4,19 +4,19 @@ const triggerEmail = require('../email/email.js')
 
 router.post('/signup', async (req, res) => {
 
-    let { email, idno, name, ntid, dept, username } = req.body
+    let { email, idno, name, ntid, dept, username } = req.body;
+    console.log('User Information :- ');
+    console.log("Email ", email, ", length :- ", email.length);
+    console.log("Employee ID ", idno, ", length :- ", idno.length);
+    console.log("Full Name ", name, ", length :- ", name.length);
+    console.log("NTID ", ntid, ", length :- ", ntid.length);
+    console.log("Department ", dept, ", length :- ", dept.length);
+    console.log("Username ", username, ", length :- ", username.length);
     let client = req.db;
     if (!email.endsWith('bosch.com')) {
         return res.status(400).send({ msg: 'not a bosch user' })
     }
-    let usernameQ = "select USERNAME from RBEI_NODE_FORUM_T_MD_USER where USERNAME='" + username + "'"
     try {
-        let usernamelist = await client.exec(usernameQ)
-
-        if (usernamelist.length > 0) {
-            return res.status(400).send({ msg: "user name already exist" })
-        }
-
         let userinsertQ = "insert into RBEI_NODE_FORUM_T_MD_USER (EMAIL_ID,IDNO,NAME,NTID,DEPT,USERNAME,TYPE,REGD_ON,STATUS) values('" + email + "','" + idno + "','" + name + "','" + ntid + "','" + dept + "','" + username + "','U',CURRENT_TIMESTAMP,'')"
 
         let result = await client.exec(userinsertQ)
