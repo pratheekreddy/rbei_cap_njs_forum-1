@@ -17,7 +17,7 @@ class Aprove extends Component {
     getusers=()=>{
         let t = localStorage.getItem('token')
             if(!t){
-                return this.props.history.push({pathname:'/login'});
+                return this.props.history.push({pathname:'/index.html#login'});
             }
         let email_local = localStorage.getItem('email')
         let token='requester='+email_local+';rbei_access_token='+t
