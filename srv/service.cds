@@ -9,7 +9,7 @@ service agenda @(requires : 'authenticated-user') {
     };
 }
 
-service profile {
+service profile @(requires : 'authenticated-user') {
 
     @readonly
     entity readprofile(email : String(256)) as
@@ -25,12 +25,34 @@ service profile {
             EMAIL_ID = : email;
 
     entity updateprofile @(Capabilities : {
-        InsertRestrictions : {Insertable : false},
+        InsertRestrictions : {Insertable: true},
+        UpdateRestrictions : {Updatable: true},
+        DeleteRestrictions : {Deletable: false}
+    })  as projection on rbei.T_MD_USER;
+
+}
+
+service admin @(requires : 'authenticated-user') {
+    entity users as
+        select from rbei.T_MD_USER {
+            EMAIL_ID,
+            NAME,
+            DEPT,
+            IDNO,
+            NTID,
+            REGD_ON,
+            USERNAME
+        }
+        where
+            STATUS = '';
+}
+
+service feedback @(requires : 'authenticated-user') {
+    entity application @(Capabilities : {
+        InsertRestrictions : {Insertable : true},
         UpdateRestrictions : {Updatable : true},
         DeleteRestrictions : {Deletable : false},
-        ReadRestrictions   : {Readable : false}
-    })                                      as select from rbei.T_MD_USER;
-}
-service admin {
-    entity users as select FROM rbei.T_MD_USER {EMAIL_ID,NAME,DEPT,IDNO,NTID,REGD_ON,USERNAME} where STATUS ='';
+        ReadRestrictions   : {Readable : true}
+    }) as projection on rbei.T_APPLICATION_FEEDBACK;
+
 }
