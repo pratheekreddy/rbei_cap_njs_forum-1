@@ -93,11 +93,22 @@ GET  http://localhost:3330/user/search?search=scheduler
 
 
 
-### APPLICATION FEEDBACK
+### UPDATE APPLICATION FEEDBACK
 PATCH http://localhost:4004/feedback/application('krishnan.gautam@in.bosch.com')
 Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
 Content-Type: application/json
 
 {
-    "FEEDBACK": "The application is good."
+    "FEEDBACK": "The application is badish."
+}
+
+
+### POST APPLICATION FEEDBACK
+POST http://localhost:4004/feedback/application
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
+Content-Type: application/json
+
+{
+    "EMAIL" : "pratheekreddy.katta@in.bosch.com",
+    "FEEDBACK": "The application is amazing."
 }

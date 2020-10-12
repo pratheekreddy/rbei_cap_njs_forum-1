@@ -24,7 +24,7 @@ service profile @(requires : 'authenticated-user') {
         where
             EMAIL_ID = : email;
 
-    entity updateprofile @(capabilities : {
+    entity updateprofile @(Capabilities : {
         InsertRestrictions : {Insertable: true},
         UpdateRestrictions : {Updatable: true},
         DeleteRestrictions : {Deletable: false}
@@ -48,9 +48,9 @@ service admin @(requires : 'authenticated-user') {
 }
 
 service feedback @(requires : 'authenticated-user') {
-    entity application @(capabilities : {
+    entity application @(Capabilities : {
         InsertRestrictions : {Insertable : true},
-        UpdateRestrictions : {Updatable : false},
+        UpdateRestrictions : {Updatable : true},
         DeleteRestrictions : {Deletable : false},
         ReadRestrictions   : {Readable : true}
     }) as projection on rbei.T_APPLICATION_FEEDBACK;
