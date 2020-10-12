@@ -24,7 +24,7 @@ service profile {
         where
             EMAIL_ID = : email;
 
-    entity updateprofile @(capabilities : {
+    entity updateprofile @(Capabilities : {
         InsertRestrictions : {Insertable : false},
         UpdateRestrictions : {Updatable : true},
         DeleteRestrictions : {Deletable : false},
