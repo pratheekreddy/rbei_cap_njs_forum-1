@@ -1,6 +1,6 @@
 ### GET FEED
 GET http://localhost:4004/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc
-Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=569D0250CD6A384C1700D756F0B88676579D0250CD6A384C1700D756F0B88676589D0250CD6A384C1700D756F0B88676599D0250CD6A384C1700D756F0B88676
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
 
 ### POST SESSIONS
 POST http://localhost:4004/agenda/sessions
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
     "user": "Gomzi",
-    "otp": 645095
+    "otp": 380628
 }
 
 
@@ -90,3 +90,14 @@ Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=569D0250
 
 
 GET  http://localhost:3330/user/search?search=scheduler
+
+
+
+### APPLICATION FEEDBACK
+PATCH http://localhost:4004/feedback/application('krishnan.gautam@in.bosch.com')
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
+Content-Type: application/json
+
+{
+    "FEEDBACK": "The application is good."
+}
