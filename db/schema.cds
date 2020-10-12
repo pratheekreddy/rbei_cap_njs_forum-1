@@ -27,6 +27,7 @@ entity Sessions {
 		S_CREATED_ON		:	Timestamp;
 		NOTIF_STATUS		:	String(1);
 		FILES				:	Composition of many Session_Files on FILES.SESSION = $self;
+        URL                 :   String(300);
 }
     
 entity Session_Topics {

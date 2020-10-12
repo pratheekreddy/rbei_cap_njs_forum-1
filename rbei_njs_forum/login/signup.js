@@ -32,7 +32,7 @@ router.post('/signup', async (req, res) => {
         let content = {}
         content.to = admins.toString();
         content.subject = '[RBEI-SbS Forum] New User registration';
-        content.html = "<p>" + name + " has registered to the portal with " +  email + "</p><p>Please validate the user.</p><a href='https://rbei-cloud-foundry-dev-rb-sbs-forum.cfapps.eu10.hana.ondemand.com/aprove'>Access Portal</a>";
+        content.html = "<p>" + name + " has registered to the portal with " +  email + "</p><p>Please validate the user.</p><a href='https://rbei-cloud-foundry-dev-rb-sbs-forum.cfapps.eu10.hana.ondemand.com/approve'>Access Portal</a>";
         // console.log(content)
         let temail = await triggerEmail(content)
         // console.log(temail)

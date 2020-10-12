@@ -81,17 +81,17 @@ const Signup = (props) => {
             <p >Sign up (only Bosch employees)</p>
             <div>
                 <label className="required">E-mail</label>
-                <input type='text' placeholder="Enter your Email" id="email"></input>
+                <input type='text' placeholder="Eg. john@in.bosch.com" id="email"></input>
                 <label>Username </label>
-                <input className={vuserName} type='text' onBlur={checkUsername} placeholder="Enter your Username" id="username"></input>
+                <input className={vuserName} type='text' onBlur={checkUsername} placeholder="Eg. Johnny" id="username"></input>
                 <label className="required">Full Name</label>
-                <input type='text' placeholder="Enter your Full Name" id="name"></input>
+                <input type='text' placeholder="Eg. John Doe" id="name"></input>
                 <label className="required">Department</label>
-                <input type='text' placeholder="Eg. RBEI/BSL1" id="dept"></input>
+                <input type='text' placeholder="Eg. RBEI/ETC5" id="dept"></input>
                 <label>Employee Id</label>
-                <input type='text' placeholder="Enter your Employee Id" id="idno"></input>
+                <input type='text' placeholder="Eg. 12345678" id="idno"></input>
                 <label>NT-ID</label>
-                <input type='text' placeholder="Enter your NT ID" id="ntid"></input>
+                <input type='text' placeholder="Eg. JOD4COB" id="ntid"></input>
                 <button className="rb-button rb-button--primary" onClick={register}>Signup</button>
             </div>
             {loading ? load : null}

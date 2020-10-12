@@ -12,6 +12,31 @@
       "skipFiles": [
         "<node_internals>/**"
       ]
+    },
+    {
+      "name": "Run rbei_cap_njs_forum-5",
+      "request": "launch",
+      "type": "node",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "-n"
+      ],
+      "args": [
+        "--",
+        "cds",
+        "run",
+        "--in-memory?"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "envFile": "${workspaceFolder}/.env5",
+      "env": {
+        "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/rbei_cap_njs_forum\\\",\\\"profileName\\\":\\\"CAPDefaultProfile\\\"}\"}"
+      }
     }
   ]
 }
