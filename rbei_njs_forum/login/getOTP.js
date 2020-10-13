@@ -16,7 +16,7 @@ router.get('/otp',async(req,res)=>{
 	
 	let user=await client.exec(userQ)
 	if(user.length===0){
-		return res.status(401).send({ msg : "User not registered "})
+		return res.status(401).send({ msg : "Welcome User! Kindly open the 'Sign up' page and self-register for enabling the login access. "})
 	}
 	if(user[0].STATUS!='A'){
 		return res.status(401).send({ msg : "User is not approved. Please contact Administrator!"})
