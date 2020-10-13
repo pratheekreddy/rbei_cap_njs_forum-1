@@ -6,14 +6,15 @@ const AWS = require('aws-sdk');
 const xsenv = require("@sap/xsenv");
 const authentication = require('../middleware/auth')
 
-
 let objectstoreOptions = xsenv.getServices({
     cred: {
         tag: "objectStore"
     }
 });
-let cred = objectstoreOptions.cred
-console.log(cred)
+
+let cred = objectstoreOptions.cred;
+// console.log(cred)
+
 const credentials = new AWS.Credentials(
     cred.access_key_id,
     cred.secret_access_key);
@@ -39,13 +40,11 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
     let uploaded_by = req.body.uploaded_by;
     uploaded_by = !uploaded_by ? "" : uploaded_by;
     let uploaded
-    // console.log(req.file);
     let name;
     let keys = [];
 
     name = Date.now() + '-' + req.file.originalname;
     keys.push([session_id, name, uploaded_by]);
-
 
     const params = {
         Bucket: cred.bucket, // pass your bucket name
@@ -57,10 +56,6 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
         if (error) {
             throw error;
         }
-        // console.log(`File uploaded successfully at ${data.Location}`);
-        // console.log(data);
-        // keys.push(data.key)
-        // console.log(keys)
         console.log(keys);
         let client = req.db;
         let query = "insert into RBEI_NODE_FORUM_SESSION_FILES (SESSION_ID, FILE_NAME, UPLOADED_BY) VALUES (?,?,?)";
@@ -75,18 +70,6 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
         });
     });
 
-    // console.log(keys);
-    // let client=req.db;
-    // let query="insert into RBEI_NODE_FORUM_SESSION_FILES (SESSION_ID,FILE_NAME) VALUES (?,?)";
-    // console.log(query);
-    // client.prepare(query,(err,statement)=>{
-    // 	statement.exec(keys,(error,result)=>{
-    // 		if(error){
-    // 			return res.send(error);
-    // 		}
-    // 		res.send({status:result});
-    // 	});
-    // });
 
 });
 
@@ -96,21 +79,11 @@ router.get('/download', (req, res) => {
         Bucket: cred.bucket,
         Key: filename
     };
-    // res.set('Content-Type', 'application/pdf')
+
     let file = s3.getObject(params, (err, data) => {
         console.log(data);
-        // res.set({
-        // 	// 'Content-Length': data.ContentLength,
-        // 	// 'Content-Disposition': 'attachment; filename=quote.pdf',
-        // 	'Content-Type': 'application/pdf'
-        // });
-        // res.set("application/pdf");
-        // res.set('Content-Disposition', 'attachment; filename=quote.pdf');
-        // res.set('Content-Type', 'application/pdf');
-        // res.contentType('Form.pdf')
+
         let name = filename.split('-');
-        // console.log(name);
-        // res.setHeader('Content-disposition', 'attachment; filename=' + name[(name.length) - 1]);
         res.send(data.Body);
     });
 

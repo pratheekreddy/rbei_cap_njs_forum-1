@@ -70,6 +70,7 @@ const Login = (props) => {
             // console.log(header)
         }).catch((e) => {
             console.log(e);
+            setLoading(false);
             alert(e.response.data.msg);
         })
     }
