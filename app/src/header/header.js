@@ -8,6 +8,7 @@ const header=(props)=> {
     // const [signup, setSignup] = useState(false);
     //   console.log(props)
     let signup=true
+    console.log(props.location.pathname)
       if(props.location.pathname==='/index.html#login'|| props.location.pathname==='/index.html#signup'){
           signup=true
       }else{
