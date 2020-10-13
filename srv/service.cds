@@ -54,7 +54,7 @@ service admin @(requires : 'authenticated-user') {
 service feedback @(requires : 'authenticated-user') {
     entity application @(Capabilities : {
         InsertRestrictions : {Insertable : true},
-        UpdateRestrictions : {Updatable : true},
+        UpdateRestrictions : {Updatable : false},
         DeleteRestrictions : {Deletable : false},
         ReadRestrictions   : {Readable : true}
     }) as projection on rbei.T_APPLICATION_FEEDBACK;

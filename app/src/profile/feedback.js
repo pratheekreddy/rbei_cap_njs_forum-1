@@ -1,0 +1,56 @@
+import React, { useState }  from "react";
+import axios from "axios";
+
+import "./feedback.scss";
+import Loading from "../loading/loading"
+
+const Feedback =()=> {
+  const [loading,setLoading]=useState(false);
+  let email = localStorage.getItem("email");
+  let token = localStorage.getItem("token");
+  let authHeader = "requester=" +email + ";rbei_access_token=" + token;
+
+  let postfeedback = () => {
+    let feedback = document.getElementById("comments").value;
+    if(feedback.length===0){
+      return;
+    }
+    console.log(feedback)
+    axios.defaults.headers.common["Authorization"] = authHeader;
+    setLoading(true);
+    axios({
+      url:
+        "/api/feedback/application",
+      data: {
+        FEEDBACK: feedback,
+      },
+      method: "POST",
+    }).then(() => {
+        setLoading(false);
+        alert('Thank you for your feedback!');
+        document.getElementById("comments").value = '';
+    }).catch(e=>{
+      setLoading(false);
+    })
+  };
+    return (
+      <div className="feedback">
+        <h1>Please feel free to share your feedback. It will be stored anonymously.</h1>
+        <textarea
+          id="comments"
+          rows="10"
+          cols="80"
+          placeholder="Please give your valuable suggestions/opinions/comments."
+        ></textarea>
+        <button
+          className="rb-button rb-button--primary"
+          onClick={postfeedback}
+        >
+          Submit Feedback
+        </button>
+        {loading ? <Loading/> : null}
+      </div>
+    );
+}
+
+export default Feedback;

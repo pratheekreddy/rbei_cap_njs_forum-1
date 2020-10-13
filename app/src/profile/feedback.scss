@@ -1,0 +1,28 @@
+.feedback {
+  position: relative;
+  height: 420px;
+  width: 70%;
+  margin: 10px auto 10px auto;
+  h1 {
+    position: absolute;
+    width: fit-content;
+    top: 10%;
+    left: 20%;
+    margin: 0;
+    text-align: start ;
+  }
+  textarea {
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 0.5em;
+    box-sizing: border-box;
+  }
+  button {
+    position: absolute;
+    bottom: 0.1%;
+    right: 10%;
+  }
+}

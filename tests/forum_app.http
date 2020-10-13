@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
     "user": "Gomzi",
-    "otp": 380628
+    "otp": 166835
 }
 
 
@@ -93,39 +93,17 @@ GET  http://localhost:3330/user/search?search=scheduler
 
 
 
-### UPDATE APPLICATION FEEDBACK
-PATCH http://localhost:4004/feedback/application('krishnan.gautam@in.bosch.com')
-Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
-Content-Type: application/json
-
-{
-    "FEEDBACK": "The application is badish."
-}
-
-
 ### POST APPLICATION FEEDBACK
 POST http://localhost:4004/feedback/application
-Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F8010170B281025217004BFE12B8CED4F9010170B281025217004BFE12B8CED4FA010170B281025217004BFE12B8CED4FB010170B281025217004BFE12B8CED4
 Content-Type: application/json
 
 {
-    "EMAIL" : "pratheekreddy.katta@in.bosch.com",
-    "FEEDBACK": "The application is amazing."
+    "FEEDBACK": "The application is bad."
 }
 
 
-### PATCH AGENDA SESSION
-PATCH http://localhost:4004/agenda/sessions(S_1597643528259)
-Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
-Content-Type: application/json
 
-{
-    "EMAIL" : "pratheekreddy.katta@in.bosch.com",
-    "FEEDBACK": "The application is amazing."
-}
 
-### PATCH AGENDA SESSION
-GET http://localhost:3330/file/download?filename=1600948833974-promises
-# Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
-Content-Type: application/json
+
 

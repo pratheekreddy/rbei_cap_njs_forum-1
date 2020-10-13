@@ -7,9 +7,10 @@ import Footers from "./footer/footer";
 import Login from "./login/login";
 import Signup from "./login/signup";
 import Profile from "./profile/profile";
-import PostcardContainer from './postcard/PostcardContainer'
-import PostAgenda from './admin/postagenda'
-import Aprove from './admin/userAprove'
+import PostcardContainer from './postcard/PostcardContainer';
+import PostAgenda from './admin/postagenda';
+import Aprove from './admin/userAprove';
+import Feedback from "./profile/feedback";
 
 class App extends Component {
 
@@ -29,6 +30,7 @@ class App extends Component {
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/postagenda" component={PostAgenda}/>
             <Route exact path="/approve" component={Aprove}/>
+            <Route exact path="/feedback" component={Feedback}/>
           </Switch>
           <div className="footer">
             <Footers />

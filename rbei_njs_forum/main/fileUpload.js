@@ -81,9 +81,6 @@ router.get('/download', (req, res) => {
     };
 
     let file = s3.getObject(params, (err, data) => {
-        console.log(data);
-
-        let name = filename.split('-');
         res.send(data.Body);
     });
 
