@@ -24,7 +24,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={PostcardContainer} />
             <Route exact path="/index.html" component={PostcardContainer} />
-            <Route exact path="index.html#login" component={Login} />
+            <Route exact path="/index.html#login" component={Login} />
             <Route exact path="/index.html#signup" component={Signup}/>
             <Route exact path="/profile" component={Profile}/>
             <Route exact path="/postagenda" component={PostAgenda}/>

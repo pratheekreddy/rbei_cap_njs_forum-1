@@ -17,7 +17,6 @@ module.exports = async (req, res, next) => {
         let requester = headers[0].replace('requester=', '');
         let rbei_access_token = headers[1].replace('rbei_access_token=', '');
 
-
         //will return only one record as email_id is the key
         const result = await cds.run(`SELECT
                     STATUS,

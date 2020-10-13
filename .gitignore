@@ -25,8 +25,15 @@ mta_archives/
 *.flattened-pom.xml
 
 # IDEs
-# .vscode
-# .idea
+ .vscode
+ .idea
 
 # added by cds deploy
 default-env.json
+
+# auto generated wildcard
+.env5
+
+#UI
+.app/build/
+.html5Deployer/resources

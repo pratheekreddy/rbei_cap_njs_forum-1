@@ -96,10 +96,10 @@ class ProfileInfo extends Component {
                     <input type='text' placeholder="Eg. RBEI/ETC5" onChange={this.onChange} value={this.state.dept} id="dept" disabled></input>
                     <i className="boschicon-bosch-ic-edit" onClick={(() => this.enableElement("dept"))}></i>
                     <label>Employee ID </label>
-                    <input type='text' placeholder="Eg. 12345678" onChange={this.onChange} value={this.state.IDNO} id="idno" disabled></input>
+                    <input type='text' placeholder="Eg. 12345678" onChange={this.onChange} value={this.state.idno} id="idno" disabled></input>
                     <i className="boschicon-bosch-ic-edit" onClick={(() => this.enableElement("idno"))}></i>
                     <label>NT-ID </label>
-                    <input type='text' placeholder="Eg. JOD4COB" onChange={this.onChange} value={this.state.NTID} id="ntid" disabled></input>
+                    <input type='text' placeholder="Eg. JOD4COB" onChange={this.onChange} value={this.state.ntid} id="ntid" disabled></input>
                     <i className="boschicon-bosch-ic-edit" onClick={(() => this.enableElement("ntid"))}></i>
                     <button className="rb-button rb-button--primary" onClick={this.update}>Update</button>
                 </div>
