@@ -1,6 +1,6 @@
 ### GET FEED
 GET http://localhost:4004/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc
-Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=F46F0020D540AB511700D1868BE68E24F56F0020D540AB511700D1868BE68E24F66F0020D540AB511700D1868BE68E24F76F0020D540AB511700D1868BE68E24
+Authorization: requester=krishnan.gautam@in.bosch.com;rbei_access_token=FB0900C0418E5A521700003287A66C59FC0900C0418E5A521700003287A66C59FD0900C0418E5A521700003287A66C59FE0900C0418E5A521700003287A66C59
 
 ### POST SESSIONS
 POST http://localhost:4004/agenda/sessions
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 {
     "user": "Gomzi",
-    "otp": 166835
+    "otp": 100910
 }
 
 
