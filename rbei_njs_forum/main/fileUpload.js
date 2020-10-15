@@ -65,7 +65,7 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
                 if (error) {
                     return res.send(error);
                 }
-                res.send({ status: 'file uploaded successfully' });
+                res.send({ status: 'File uploaded successfully.' });
             });
         });
     });

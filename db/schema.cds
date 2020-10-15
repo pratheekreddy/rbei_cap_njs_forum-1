@@ -39,9 +39,6 @@ entity Session_Topics {
     key SUB_TOPIC_ID : String(50);
         USER_EMAIL   : String(256);
         SUB_TOPIC    : String(100);
-// FILE_01				:	String(200);
-// FILE_02				:	String(200);
-// FILE_03				:	String(200);
 }
 
 entity Session_Files {
@@ -54,15 +51,14 @@ entity T_SESSION_FEEDBACK {
     key SESSION    : Association to Sessions;
     key EMAIL      : String(256);
         RATING     : Integer;
-        FEEDBACK : String(1000);
+        FEEDBACK   : String(1000);
         CREATEDAT  : Timestamp @cds.on.insert : $now;
         MODIFIEDAT : Timestamp @cds.on.update : $now;
 
 }
 
 entity T_APPLICATION_FEEDBACK {
-    key EMAIL      : String(256);
-        FEEDBACK   : String(500);
-        CREATEDAT  : Timestamp @cds.on.insert : $now;
-        MODIFIEDAT : Timestamp @cds.on.update : $now;
+    key ID        : UUID;
+        FEEDBACK  : String(500);
+        CREATEDAT : Timestamp @cds.on.insert : $now;
 }
