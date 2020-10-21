@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";//, Link 
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";//, Link 
 
 import "./postcard/styles.css";
 import Headers from "./header/header";
@@ -11,34 +11,46 @@ import PostcardContainer from './postcard/PostcardContainer';
 import PostAgenda from './admin/postagenda';
 import Aprove from './admin/userAprove';
 import Feedback from "./profile/feedback";
+import CacheBuster from "./CacheBuster";
 
 class App extends Component {
 
 
-  render() {
-    return (
-      <Router>
-        <div>
-          <div className="sticky">
-            <Headers user={this.user}/>
-          </div>
-          <Switch>
-            <Route exact path="/" component={PostcardContainer} />
-            <Route exact path="/index.html" component={PostcardContainer} />
-            <Route exact path="/index.html#login" component={Login} />
-            <Route exact path="/index.html#signup" component={Signup}/>
-            <Route exact path="/profile" component={Profile}/>
-            <Route exact path="/postagenda" component={PostAgenda}/>
-            <Route exact path="/approve" component={Aprove}/>
-            <Route exact path="/feedback" component={Feedback}/>
-          </Switch>
-          <div className="footer">
-            <Footers />
-          </div>
-        </div>
-      </Router>
-    );
-  }
+    render() {
+        return (
+            <CacheBuster>
+                {({ loading, isLatestVersion, refreshCacheAndReload }) => {
+                    if (loading) return null;
+                    if (!loading && !isLatestVersion) {
+                        refreshCacheAndReload();
+                    }
+                    return (
+                        <Router>
+                            <div>
+                                <div className="sticky">
+                                    <Headers user={this.user} />
+                                </div>
+                                <Switch>
+                                    <Route exact path="/" component={PostcardContainer} />
+                                    <Route exact path="/index.html" component={PostcardContainer} />
+                                    <Route exact path="/index.html#login" component={Login} />
+                                    <Route exact path="/index.html#signup" component={Signup} />
+                                    <Route exact path="/profile" component={Profile} />
+                                    <Route exact path="/postagenda" component={PostAgenda} />
+                                    <Route exact path="/approve" component={Aprove} />
+                                    <Route exact path="/feedback" component={Feedback} />
+                                </Switch>
+                                <div className="footer">
+                                    <Footers />
+                                </div>
+                            </div>
+                        </Router>
+                    );
+                }}
+            </CacheBuster>
+        );
+
+    }
 }
 
 export default App;
