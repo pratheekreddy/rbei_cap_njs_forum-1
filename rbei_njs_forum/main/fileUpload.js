@@ -75,13 +75,19 @@ router.post('/upload', authentication, upload.single('files'), (req, res) => {
 
 router.get('/download', (req, res) => {
     let filename = req.query.filename;
+    console.log(filename)
     const params = {
         Bucket: cred.bucket,
         Key: filename
     };
 
     let file = s3.getObject(params, (err, data) => {
+        if(!err){
         res.send(data.Body);
+        }
+        else{
+            console.log(err)
+        }
     });
 
 })

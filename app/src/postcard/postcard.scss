@@ -78,6 +78,21 @@
       cursor: pointer;
     }
   }
+    .video{
+    margin-right: 10px;
+    font-size: 14px;
+    float: right;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("../fonts/bosch-tube.png");
+    a {
+      width: 35px;
+      height: 35px;
+      font-size: 35px;
+      float: left;
+      cursor: pointer;
+    }
+  }
 
   .downloads {
     margin-left: 35px;
