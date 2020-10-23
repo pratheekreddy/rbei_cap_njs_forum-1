@@ -8,7 +8,6 @@ const header=(props)=> {
     // const [signup, setSignup] = useState(false);
     //   console.log(props)
     let signup=true
-    // console.log(props.location.pathname)
       if(props.location.pathname==='/index.html#login'|| props.location.pathname==='/index.html#signup'){
           signup=true
       }else{
@@ -20,8 +19,8 @@ const header=(props)=> {
       )
       let nav=(
           <div className="signup">
-          <Link to={{pathname:'/index.html#login'}}>Sign in</Link>
-          <Link to={{pathname:'/index.html#signup'}} >Sign up</Link>
+            <Link to={{pathname:'/index.html#login'}}>Sign in</Link>
+            <strong><Link to={{pathname:'/index.html#signup'}} >Sign up</Link></strong>
           </div>
       )
     return (

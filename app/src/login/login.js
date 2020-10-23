@@ -27,7 +27,6 @@ const Login = (props) => {
             alert(result.data.msg)
             setLoading(false)
         }).catch((e) => {
-            setLoading(false)
             alert(e.response.data.msg)
             console.log(e.response.data.msg)
         })
@@ -70,7 +69,6 @@ const Login = (props) => {
             // console.log(header)
         }).catch((e) => {
             console.log(e);
-            setLoading(false);
             alert(e.response.data.msg);
         })
     }
@@ -78,7 +76,7 @@ const Login = (props) => {
         <div>
             <div>
 
-                <label >E-mail </label>
+                <label >E-mail / Username </label>
                 <input disabled={showOTP} id="email" type="text" />
                 {!showOTP ? (<button className="rb-button rb-button--primary" onClick={getOtp}>Get OTP</button>) : null}
             </div>

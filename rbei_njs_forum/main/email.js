@@ -55,7 +55,7 @@ const sendAgendaEmail = async (emailContent) => {
         topics,
         mailSubscribers
     } = emailContent
-    let to = mailSubscribers.map(subscriber => subscriber.EMAIL_ID)
+    let to = mailSubscribers.map(subscriber => subscriber.EMAIL_ID.trim())
     console.log(to)
     const transporter = nodemailer.createTransport({
         service: 'gmail',

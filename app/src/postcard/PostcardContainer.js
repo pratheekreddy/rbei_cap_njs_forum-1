@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import Postcards from './postcards'
 import Loading from '../loading/loading'
+import List from './searchlist'
 
 class PostcardContainer extends Component {
     intervalID;
@@ -9,6 +11,7 @@ class PostcardContainer extends Component {
         super();
         this.state = {
             session: [],
+            searchlist:[],
             loading:false
         };
     }
@@ -20,19 +23,19 @@ class PostcardContainer extends Component {
         let email_local = localStorage.getItem('email')
         let token='requester='+email_local+';rbei_access_token='+t
         axios.defaults.headers.common['Authorization'] = token;
-        this.setState({loading:false})
+
+        this.setState({loading:false,searchlist:[]});
+        document.getElementById('search').value = '';
         const post = axios.get(
             "/api/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc"
         );
         post
             .then((result) => {
-                this.setState({ session: result.data.value ,loading:true});
-                // this.intervalID = setTimeout(this.reset.bind(this), 5000);
+                this.setState({ session: result.data.value ,loading:true,searchlist:[]});
             })
             .catch((e) => {
                 alert('Please login again')
                 console.log(e)
-                this.setState({loading:true})
                 this.props.history.push({pathname:'/index.html#login'})
             });
     };
@@ -41,13 +44,47 @@ class PostcardContainer extends Component {
         this.reset();
     }
 
-    // componentWillUnmount() {
-    //     clearTimeout(this.intervalID);
-    // }
+    timeout=0
+    searchRequest(value){
+        
+        if(this.timeout) clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+            axios.get('/node/user/search?search='+value)
+            .then(result=>{
+                this.setState({searchlist:result.data})
+            })
+            .catch(e=>{
+                console.log(e)
+            })
+          }, 300);
+    }
+
+    getSearch=(id)=>{
+
+        this.setState({loading:false,searchlist:[]})
+        axios.get("/api/agenda/sessions?$expand=TOPICS,FILES&$orderby=DATE%20desc&$filter=ID eq '"+id+"'")
+        .then(result1=>{
+            this.setState({ session: result1.data.value ,loading:true,searchlist:[]});
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+    }
 
     render() {
         return (
-            this.state.loading?<Postcards session={this.state.session} no_of_sessions = {this.state.session.length} /> : <Loading/>
+            <div>
+                <div className="search-content">
+                    <input id='search' type='search' className="search"  placeholder="Search" onChange={e=>this.searchRequest(e.target.value)}></input>
+                    <i style={{width:'25px',height:'25px'}} onClick={this.reset} className="boschicon-bosch-ic-reset"> </i>
+                    <div className='searchlist'>    
+                        <List list={this.state.searchlist} search={this.getSearch}></List>
+                    </div>
+                </div>
+                <div className="postcords_div">
+                    {this.state.loading?<Postcards session={this.state.session} no_of_sessions = {this.state.session.length} /> : <Loading/>}
+                </div>
+            </div>
         )
     }
 }
