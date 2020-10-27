@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
-const express = require('express')
-const router = new express.Router()
-const auth = require('../middleware/auth')
+const express = require('express');
+const router = new express.Router();
+const auth = require('../middleware/auth');
 
 router.get('/publishagenda', auth, async (req, res) => {
     try {
@@ -9,15 +9,15 @@ router.get('/publishagenda', auth, async (req, res) => {
             msg: 'unauthorized'
         });
         let session_id = req.query.session_id;
-        let agendaq = "select * from RBEI_NODE_FORUM_SESSION_TOPICS a inner join RBEI_NODE_FORUM_SESSIONS b on a.session_id=b.id where a.session_id='" + session_id + "'"
-        let client = req.db
-        let agendaResults = await client.exec(agendaq)
-        console.log(agendaResults)
+        let agendaq = "select * from RBEI_NODE_FORUM_SESSION_TOPICS a inner join RBEI_NODE_FORUM_SESSIONS b on a.session_id=b.id where a.session_id='" + session_id + "'";
+        let client = req.db;
+        let agendaResults = await client.exec(agendaq);
+        console.log(agendaResults);
         // insertAgenda(req.body)
         let query = `SELECT EMAIL_ID FROM RBEI_NODE_FORUM_T_MD_USER WHERE STATUS = 'A'`;
-        console.log('query ', query);
-        let mailSubscribers = await client.exec(query)
-        console.log('mailSubscribers ', mailSubscribers)
+        // console.log('query ', query);
+        let mailSubscribers = await client.exec(query);
+        console.log('mailSubscribers ', mailSubscribers);
         let topics = [];
         const title = [];
         for (let i = 0; i < agendaResults.length; i++) {
@@ -35,13 +35,13 @@ router.get('/publishagenda', auth, async (req, res) => {
             topics,
             mailSubscribers
         }
-        console.log('email information ', emailInformation)
-        let info = await sendAgendaEmail(emailInformation)
-        console.log('info ', info)
-        return res.send(info)
+        console.log('email information ', emailInformation);
+        let info = await sendAgendaEmail(emailInformation);
+        console.log('info ', info);
+        return res.send(info);
     } catch (error) {
-        console.log(error)
-        res.status(500).send(error)
+        console.log(error);
+        res.status(500).send(error);
     }
 
 })
@@ -56,7 +56,7 @@ const sendAgendaEmail = async (emailContent) => {
         mailSubscribers
     } = emailContent
     let to = mailSubscribers.map(subscriber => subscriber.EMAIL_ID.trim())
-    console.log(to)
+    console.log(to);
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -64,7 +64,7 @@ const sendAgendaEmail = async (emailContent) => {
             pass: 'Bosch@123'
         }
     })
-    let topicPresenter = ''
+    let topicPresenter = '';
     topics.forEach(topic => {
         topicPresenter += `<tr>
 							<td>${topic.title}</td>
@@ -85,14 +85,23 @@ const sendAgendaEmail = async (emailContent) => {
 		`
 
     html = html.concat(topicPresenter, '</table><footer><h4>Thanks and Best Regards!</h4><p>P.S - This is an auto generated email. Please do not reply.</p></footer>')
-    let mailOptions = {
-        from: '"RBEI-SbS Forum <DO NOT REPLY> " <rbei.node.js.forum@gmail.com>',
-        to: to,
-        subject: `[RBEI-SbS Forum] Session: ${title}`,
-        html: html
+
+    let info=[];
+    
+    for(let i=0;i<to.length/5;i++){
+        let start=i*5;
+        let end=(i+1)*5;
+        var to_slice=to.slice(start,end);
+        console.log(to_slice);
+        let mailOptions = {
+            from: '"RBEI-SbS Forum <DO NOT REPLY> " <rbei.node.js.forum@gmail.com>',
+            bcc: to_slice,
+            subject: `[RBEI-SbS Forum] Session: ${title}`,
+            html: html
+        }
+         info.push(await transporter.sendMail(mailOptions));
     }
-    let info = await transporter.sendMail(mailOptions);
-    return info
+    return info;
 }
 
-module.exports = router
+module.exports = router;
