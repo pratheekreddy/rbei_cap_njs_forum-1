@@ -10,7 +10,7 @@ router.get('/otp',async(req,res)=>{
 	if(userid===undefined){
 		let userid=req.query.username
 	}
-	let userQ="select EMAIL_ID,STATUS from RBEI_NODE_FORUM_T_MD_USER where (EMAIL_ID='"+userid+"' or USERNAME='"+userid+"')"
+	let userQ="select EMAIL_ID,STATUS from RBEI_NODE_FORUM_T_MD_USER where (EMAIL_ID='"+userid.trim().toLowerCase()+"' or USERNAME='"+userid.trim()+"')"
 	console.log(userQ)
 	let client=req.db;
 	

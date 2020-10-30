@@ -27,7 +27,7 @@ router.post('/login', async(req, res) => {
 			FROM RBEI_NODE_FORUM_T_MD_USER
 			WHERE (EMAIL_ID = ? OR USERNAME = ? OR IDNO = ? OR NTID = ?)  AND STATUS = 'A'`;
 	try {
-		let result = await client.exec(query, [otp, user, user, user, user]);
+		let result = await client.exec(query, [otp.trim(), user.trim().toLowerCase(), user.trim(), user.trim(), user.trim()]);
 		console.log(result);
 
 		if (result.length === 0) {

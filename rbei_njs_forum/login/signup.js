@@ -17,7 +17,7 @@ router.post('/signup', async (req, res) => {
         return res.status(400).send({ msg: 'not a bosch user' })
     }
     try {
-        let userinsertQ = "insert into RBEI_NODE_FORUM_T_MD_USER (EMAIL_ID,IDNO,NAME,NTID,DEPT,USERNAME,TYPE,REGD_ON,STATUS) values('" + email + "','" + idno + "','" + name + "','" + ntid + "','" + dept + "','" + username + "','U',CURRENT_TIMESTAMP,'')"
+        let userinsertQ = "insert into RBEI_NODE_FORUM_T_MD_USER (EMAIL_ID,IDNO,NAME,NTID,DEPT,USERNAME,TYPE,REGD_ON,STATUS) values('" + email.trim().toLowerCase() + "','" + idno.trim() + "','" + name.trim() + "','" + ntid.trim() + "','" + dept.trim() + "','" + username.trim() + "','U',CURRENT_TIMESTAMP,'')"
 
         let result = await client.exec(userinsertQ)
         // console.log(result)
