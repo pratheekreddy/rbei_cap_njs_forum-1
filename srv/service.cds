@@ -61,18 +61,8 @@ service feedback @(requires : 'authenticated-user') {
 
 }
 
-service questions {
-    entity questions
-    @(Capabilities : {
-        InsertRestrictions : {Insertable: true},
-        UpdateRestrictions : {Updatable: false},
-        DeleteRestrictions : {Deletable: false}
-    }) as projection on rbei.T_QUESTIONS;
+service QA {
+    entity questions as projection on rbei.T_QUESTION;
 
-    entity answers
-    @(Capabilities : {
-        InsertRestrictions : {Insertable: true},
-        UpdateRestrictions : {Updatable: false},
-        DeleteRestrictions : {Deletable: false}
-    }) as projection on rbei.T_ANSWERS;
+    entity answers as projection on rbei.T_ANSWER;
 }

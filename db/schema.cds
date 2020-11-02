@@ -32,8 +32,6 @@ entity Sessions {
         URL          : String(300);
         RATING       : Composition of many T_SESSION_FEEDBACK
                            on RATING.SESSION = $self;
-        QUESTIONS    : Composition of many T_QUESTIONS
-                           on QUESTIONS.SESSION=$self;
 }
 
 entity Session_Topics {
@@ -65,21 +63,21 @@ entity T_APPLICATION_FEEDBACK {
         CREATEDAT : Timestamp @cds.on.insert : $now;
 }
 
-entity T_QUESTIONS {
+entity T_QUESTION {
     key Q_ID         : UUID;
-        SESSION      : Association to Sessions;
+        SESSION      : String(150);
         QUESTION     : String(2000);
         USER         : String(256);
         Q_GEN_TMSTMP : Timestamp @cds.on.insert : $now;
-        ANSWERS      : Composition of many T_ANSWERS
+        ANSWERS      : Composition of many T_ANSWER
                            on ANSWERS.QUESTION = $self;
 }
  
-entity T_ANSWERS {
+entity T_ANSWER {
     key A_ID         : UUID;
-        SESSION      : Association to Sessions;
-        QUESTION     : Association to T_QUESTIONS;
-        ANSWER      : String(4000);
+        SESSION      : String(150);
+        QUESTION     : Association to T_QUESTION;
+        ANSWER       : String(4000);
         USER         : String(256);
         A_GEN_TMSTMP : Timestamp @cds.on.insert : $now;
 }
