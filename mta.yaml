@@ -24,7 +24,7 @@ modules:
  - name: forum_app-srv
  # ------------------------------------------------------------
    type: nodejs
-   path: srv
+   path: gen/srv
    parameters:
       memory: 256M
       disk-quota: 512M
@@ -58,7 +58,7 @@ modules:
  - name: forum_app-db-deployer
  # ------------------------------------------------------------
    type: hdb
-   path: db 
+   path: gen/db 
    parameters:
      buildpack: nodejs_buildpack
      memory: 256M
